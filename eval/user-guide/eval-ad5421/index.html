@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EVAL-ADXL355-PMDZ Example Application &#8212; System Level Documentation  documentation</title>
+    <title>4-20mA Accelerometer-Correlated Industrial Output &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8e8a900e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/style.min.css?v=7f94efc5" />
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
@@ -98,8 +98,31 @@
         </div>
         <nav>
           <ul>
-<li><a class="reference internal" href="#">EVAL-ADXL355-PMDZ Example Application</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#">4-20mA Accelerometer-Correlated Industrial Output</a><ul>
+<li><a class="reference internal" href="#hardware-setup">Hardware Setup</a><ul>
+<li><a class="reference internal" href="#boards">Boards</a></li>
+<li><a class="reference internal" href="#ad5421-setup">AD5421 Setup</a><ul>
+<li><a class="reference internal" href="#power">Power</a></li>
+<li><a class="reference internal" href="#soldering-for-the-ad5421">Soldering for the AD5421</a></li>
+<li><a class="reference internal" href="#spi-connection">SPI Connection</a></li>
+<li><a class="reference internal" href="#jumper-settings-for-the-ad5421">Jumper Settings for the AD5421</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adxl382-setup">ADXL382 Setup</a><ul>
+<li><a class="reference internal" href="#connecting-adxl382-to-max32670">Connecting ADXL382 to MAX32670</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#final-hw-setup">Final HW Setup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flashing-the-prebuilt-demo">Flashing the ‘Prebuilt’ Demo</a></li>
+<li><a class="reference internal" href="#building-the-software">Building the Software</a><ul>
+<li><a class="reference internal" href="#install-msdk">Install MSDK</a></li>
+<li><a class="reference internal" href="#setup-no-os">Setup No-OS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flashing-the-software">Flashing the Software</a></li>
+<li><a class="reference internal" href="#connecting-to-the-serial-port">Connecting to the Serial Port</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +230,7 @@ Content on this topic
 <p class="caption" role="heading"><span class="caption-text">Evaluation Boards</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8" id="toctree-collapse-8" checked=""/><div class="collapse"><a class="reference internal" href="../index.html">User guides</a><label for="toctree-collapse-8"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">EVAL-ADXL355-PMDZ Example Application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4-20mA Accelerometer-Correlated Industrial Output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../eval-adxl355-pmdz/index.html">EVAL-ADXL355-PMDZ User Guide</a></li>
 <li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-1" id="toctree-collapse-8-1"/><div class="collapse"><a class="reference internal" href="../adrv9009/index.html">ADRV9009 &amp; ADRV9008</a><label for="toctree-collapse-8-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><a class="reference internal" href="../adrv9009/prerequisites.html">Prerequisites</a></li>
@@ -330,19 +353,342 @@ Content on this topic
         <div class="bodywrapper" id="top-anchor">
           <div class="body" role="main">
             
-  <section id="eval-adxl355-pmdz-example-application">
-<h1>EVAL-ADXL355-PMDZ Example Application<a class="headerlink" href="#eval-adxl355-pmdz-example-application" title="Link to this heading"></a></h1>
+  <section id="ma-accelerometer-correlated-industrial-output">
+<h1>4-20mA Accelerometer-Correlated Industrial Output<a class="headerlink" href="#ma-accelerometer-correlated-industrial-output" title="Link to this heading"></a></h1>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>This is a draft, very much WIP document in a fork of <a class="reference external" href="https://github.com/analogdevicesinc/documentation">https://github.com/analogdevicesinc/documentation</a></p>
 </div>
-<p>This guide presents an example application for the <a class="icon adi reference external" href="https://www.analog.com/EVAL-AD5421">EVAL-AD5421</a> evaluation board featuring the <a class="icon adi reference external" href="https://www.analog.com/AD5421">AD5421</a> 4-20mA Industrial Digital-to-Analog Converter (DAC).</p>
-<p>The application also features the <a class="icon adi reference external" href="https://www.analog.com/MAX32670">MAX32670</a> low-power microcontroller and the <a class="icon adi reference external" href="https://www.analog.com/ADXL382">ADXL382</a> MEMS accelerometer.</p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>The project is located here:
-<a class="reference external" href="https://github.com/Brandon-Hurst/NoOS_max32-accel-dac">https://github.com/Brandon-Hurst/NoOS_max32-accel-dac</a></p>
-<img alt="../../../_images/system.jpg" src="../../../_images/system.jpg" />
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#hardware-setup" id="id8">Hardware Setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#boards" id="id9">Boards</a></p></li>
+<li><p><a class="reference internal" href="#ad5421-setup" id="id10">AD5421 Setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#power" id="id11">Power</a></p></li>
+<li><p><a class="reference internal" href="#soldering-for-the-ad5421" id="id12">Soldering for the AD5421</a></p></li>
+<li><p><a class="reference internal" href="#spi-connection" id="id13">SPI Connection</a></p></li>
+<li><p><a class="reference internal" href="#jumper-settings-for-the-ad5421" id="id14">Jumper Settings for the AD5421</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#adxl382-setup" id="id15">ADXL382 Setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#connecting-adxl382-to-max32670" id="id16">Connecting ADXL382 to MAX32670</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#final-hw-setup" id="id17">Final HW Setup</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#flashing-the-prebuilt-demo" id="id18">Flashing the ‘Prebuilt’ Demo</a></p></li>
+<li><p><a class="reference internal" href="#building-the-software" id="id19">Building the Software</a></p>
+<ul>
+<li><p><a class="reference internal" href="#install-msdk" id="id20">Install MSDK</a></p></li>
+<li><p><a class="reference internal" href="#setup-no-os" id="id21">Setup No-OS</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#flashing-the-software" id="id22">Flashing the Software</a></p></li>
+<li><p><a class="reference internal" href="#connecting-to-the-serial-port" id="id23">Connecting to the Serial Port</a></p></li>
+</ul>
+</nav>
+<p>This project uses the <a class="icon adi reference external" href="https://www.analog.com/MAX32670">MAX32670</a> microcontroller with the <a class="icon adi reference external" href="https://www.analog.com/ADXL382">ADXL382</a>
+MEMS accelerometer and <a class="icon adi reference external" href="https://www.analog.com/AD5421">AD5421</a> 4-20mA Industrial DAC. The DAC output is correlated to the
+Z-axis of the accelerometer because it’s usually the easiest to think
+about. When the ADXL IC is sitting flat on a table, for example, the
+normal vector in the Z-direction points fully up giving a normalized dot
+product of 1. Therefore, under these conditions the Z component of the
+ADXL output is +1.0. If you flip the ADXL, the Z component goes to -1.0.</p>
+<figure class="align-default" id="id1">
+<img alt="Final HW Powered" src="../../../_images/system.jpg" />
+<figcaption>
+<p><span class="caption-number">Figure 1 </span><span class="caption-text">Final HW Powered</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<img alt="Output on Serial Port" src="../../../_images/serial-output.png" />
+<figcaption>
+<p><span class="caption-number">Figure 2 </span><span class="caption-text">Output on Serial Port</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="hardware-setup">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Hardware Setup</a><a class="headerlink" href="#hardware-setup" title="Link to this heading"></a></h2>
+<section id="boards">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Boards</a><a class="headerlink" href="#boards" title="Link to this heading"></a></h3>
+<p>There are 4 boards currently involved in doing the setup for this
+project.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/max32670evkit.html">MAX32670EVKIT</a>
+ARM Cortex M4F Microcontroller</p></li>
+<li><p><a class="reference external" href="https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/eval-ad5421.html">EVAL-AD5421</a>
+4-20mA DAC</p></li>
+<li><p><a class="reference external" href="https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/SDP-B.html">EVAL-SDP-CB1Z</a>
+(just for powering the AD5421’s DVDD at the moment)</p></li>
+<li><p><a class="reference external" href="https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/eval-adxl382.html">EVAL-ADXL382</a>
+MEMs Accelerometer</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before proceeding, please ensure the “BOOT LD EN” switch on
+the MAX32670 EV Kit is set to “DIS” to disable the bootloader.</p>
+</div>
+</section>
+<section id="ad5421-setup">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">AD5421 Setup</a><a class="headerlink" href="#ad5421-setup" title="Link to this heading"></a></h3>
+<section id="power">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Power</a><a class="headerlink" href="#power" title="Link to this heading"></a></h4>
+<p>To setup the AD5421 DAC, the Eval-SDP-CB1Z board must be used to power
+the AD5421 board at this time. There are multiple SDP connectors on the
+SDP board; please verify the connection with the below image before
+plugging in power. Also, please disconnect power before proceeding with
+this guide to avoid damaging boards.</p>
+<figure class="align-default" id="id3">
+<img alt="Eval-SDP-CB1Z to AD5421 connection" src="../../../_images/sdp-ad5421.jpg" />
+<figcaption>
+<p><span class="caption-number">Figure 3 </span><span class="caption-text">Eval-SDP-CB1Z to AD5421 connection</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please disconnect power from all sources before
+continuing.</p>
+</div>
+</section>
+<section id="soldering-for-the-ad5421">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Soldering for the AD5421</a><a class="headerlink" href="#soldering-for-the-ad5421" title="Link to this heading"></a></h4>
+<p>To work with the AD5421, TP1-6 (for SPI and FAULTIN/LDAC) and TP19
+should be soldered in. TP19 is just so the boards can directly share a
+GND pin, and also depends on the position of the Reg_Sel1 jumper (do NOT
+move this jumper unless you use a different test point for the GND).</p>
+<ul class="simple">
+<li><p>TP1 - !SS0 / !SYNC</p></li>
+<li><p>TP2 - SCLK</p></li>
+<li><p>TP3 - SDI / MOSI</p></li>
+<li><p>TP4 - SDO / MISO</p></li>
+<li><p>TP5 - FAULTIN</p></li>
+<li><p>TP6 - !LDAC</p></li>
+<li><p>TP19 - GND. Can also use COM, but this avoid bringing any jumpers
+close to the exposed supply.</p></li>
+</ul>
+</section>
+<section id="spi-connection">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">SPI Connection</a><a class="headerlink" href="#spi-connection" title="Link to this heading"></a></h4>
+<p>The EVAL-AD5421SDZ platform must be connected to the SPI1 bus on
+MAX32670. Connect these MCU pins on GPIO0 for AD5421:</p>
+<ul class="simple">
+<li><p>P0.17 –&gt; TP1</p></li>
+<li><p>P0.16 –&gt; TP2</p></li>
+<li><p>P0.15 –&gt; TP3</p></li>
+<li><p>P0.14 –&gt; TP4</p></li>
+<li><p>LDAC (GPIO P0.30 or GND) –&gt; TP6</p></li>
+<li><p>FAULTIN (optional) –&gt; TP5 (unused, may be monitored with an
+oscilloscope)</p></li>
+<li><p>GND (COM or TP19) - Any GND pin on the MAX32670 EVKit</p></li>
+</ul>
+<figure class="align-default" id="id4">
+<img alt="AD5421-MAX32670 EV KIT Connections" src="../../../_images/ad5421-spi1.jpg" />
+<figcaption>
+<p><span class="caption-number">Figure 4 </span><span class="caption-text">AD5421-MAX32670 EV KIT Connections</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="jumper-settings-for-the-ad5421">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Jumper Settings for the AD5421</a><a class="headerlink" href="#jumper-settings-for-the-ad5421" title="Link to this heading"></a></h4>
+<p>The following jumpers are set by default for the AD5421 kit:</p>
+<ul class="simple">
+<li><p>LK1</p></li>
+<li><p>LK2 –&gt; Position B</p></li>
+<li><p>LK4</p></li>
+<li><p>LK6</p></li>
+<li><p>LK7 (use onboard resistor if not provided externally on LOOP+/LOOP-)</p></li>
+</ul>
+</section>
+</section>
+<section id="adxl382-setup">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">ADXL382 Setup</a><a class="headerlink" href="#adxl382-setup" title="Link to this heading"></a></h3>
+<section id="connecting-adxl382-to-max32670">
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Connecting ADXL382 to MAX32670</a><a class="headerlink" href="#connecting-adxl382-to-max32670" title="Link to this heading"></a></h4>
+<p>The ADXL382 connects to MAX32670 over SPI0. There are silkscreen
+markings for SPI0 on the MAX32670 EVKit. ADXL382 uses the following
+pins:</p>
+<ul class="simple">
+<li><p>V_AUX / GND</p></li>
+<li><p>P0.2 (SPI0 MISO)</p></li>
+<li><p>P0.3 (SPI0 MOSI)</p></li>
+<li><p>P0.4 (SPI0 SCK)</p></li>
+<li><p>P0.5 (SPI0 SS0)</p></li>
+</ul>
+<p><img alt="ADXL345 Connection" src="../../../_images/adxl382-mcu.jpg" /> <img alt="ADXL345 Solo" src="../../../_images/adxl382-solo.jpg" /></p>
+</section>
+</section>
+<section id="final-hw-setup">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Final HW Setup</a><a class="headerlink" href="#final-hw-setup" title="Link to this heading"></a></h3>
+<p>The final hardware setup between Eval Kits looks like the below:</p>
+<figure class="align-default" id="id5">
+<img alt="final HW setup" src="../../../_images/system.jpg" />
+<figcaption>
+<p><span class="caption-number">Figure 5 </span><span class="caption-text">final HW setup</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Finally, connect a 6-24V, &gt;20 mA supply to LOOP+/LOOP- on the AD5421
+kit. Connect both USB ports and turn on the supply. If the Serial port
+output shows an error due to supply sequencing, try resetting the
+MAX32670 via the RSTN button (SW2).</p>
+</section>
+</section>
+<section id="flashing-the-prebuilt-demo">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Flashing the ‘Prebuilt’ Demo</a><a class="headerlink" href="#flashing-the-prebuilt-demo" title="Link to this heading"></a></h2>
+<p>Under the <code class="docutils literal notranslate"><span class="pre">prebuilt</span></code> folder, there will be an ELF file that contains
+pre-built code. For those who do not want to compile the code
+themselves, the prebuilt binary may be flashed to the MCU instead. To do
+so, visit the following page:
+<a class="reference external" href="https://github.com/analogdevicesinc/max32625pico-firmware-images">https://github.com/analogdevicesinc/max32625pico-firmware-images</a></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Follow the instructions under the <strong>“How to update the
+firmware?”</strong> heading on the link above, holding down <strong>SW4 on the
+MAX32670EVKIT</strong> when you plug it in. Use the
+<code class="docutils literal notranslate"><span class="pre">max32625_max32670evkit_if_crc_swd_v1.0.3.bin</span></code> file inside the
+prebuilt/ folder or the MAX32670 file to update the programmer on the
+MAX32670 board.</p>
+</div>
+<p>Once you have updated the above firmware, you should see a DAPLINK drive
+show up on your PC. At this point, you can drag-n-drop the .elf file
+onto the DAPLINK drive to program the prebuilt binary.</p>
+<figure class="align-default" id="id6">
+<img alt="drag-n-drop" src="../../../_images/drag-n-drop-fw.png" />
+<figcaption>
+<p><span class="caption-number">Figure 6 </span><span class="caption-text">drag-n-drop</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="building-the-software">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Building the Software</a><a class="headerlink" href="#building-the-software" title="Link to this heading"></a></h2>
+<p>The software is built using ADI’s
+<a class="reference external" href="https://github.com/analogdevicesinc/no-OS">No-OS</a> software
+framework. This requires an installation of the MaximSDK on the system
+to use the low-level Hardware-Access-Layer (HAL) drivers for the MAX32
+parts. After fully installing the MSDK, setup No-OS to build for “Maxim”
+devices. Please review the following guides for the setup:</p>
+<p><a class="reference external" href="https://analogdevicesinc.github.io/msdk//USERGUIDE/#installation">MSDK Installation
+Guide</a>
+<a class="reference external" href="https://wiki.analog.com/resources/no-os/build?s%5B%5D=lts&amp;s%5B%5D=tleb&amp;s%5B%5D=ittpsh&amp;s%5B%5D=giteshipg&amp;s%5B%5D=home">No-OS Build
+Guide</a></p>
+<section id="install-msdk">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Install MSDK</a><a class="headerlink" href="#install-msdk" title="Link to this heading"></a></h3>
+<p>Please follow the MSDK Installation Guide link above completely to
+install the MSDK for MAX32 microcontrollers.</p>
+</section>
+<section id="setup-no-os">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Setup No-OS</a><a class="headerlink" href="#setup-no-os" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To build this application, the author uses
+<a class="reference external" href="https://www.msys2.org/">MSYS2</a> via <a class="reference external" href="https://git-scm.com/downloads">Git
+Bash</a>. To avoid conflating
+environments, it may be wise to try using an MSYS2 environment when
+buiding the software.</p>
+<p>A few tools are needed to build the program besides MSDK / No-OS: -
+GNU Make - Git (for cloning No-OS)</p>
+<p>These can be installed by calling
+<code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">git</span> <span class="pre">mingw-w64-x86_64-make</span></code> in an MSYS2 environment.</p>
+</div>
+<p>Please follow the No-OS guide with the “Maxim” setup for your operating
+system (e.g. Windows–&gt; Maxim). The steps are re-printed below targeting
+a Windows setup to add clarity. MSYS2 is used by the author as the
+primary Windows environment.</p>
+<ul class="simple">
+<li><p>Install MSDK</p></li>
+<li><p>Clone no-OS recursively ( <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">--recursive</span> <span class="pre">&lt;url&gt;</span></code> )</p></li>
+<li><p>Open the project on command-line (
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">no-OS/projects/z-adxl-max32670-ad5421/</span></code> )</p></li>
+<li><p>Set MAXIM_LIBRARIES environment variable (
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">MAXIM_LIBRARIES=/c/MaximSDK/Libraries</span></code> if using MSYS2 )</p></li>
+<li><p>Set the environment variables for the PLATFORM and TARGET. (
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PLATFORM=maxim</span> <span class="pre">TARGET=max32670</span></code> )</p></li>
+<li><p>Finally, type “<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j10</span></code>” into the command-line.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you get the error
+<code class="docutils literal notranslate"><span class="pre">***</span> <span class="pre">multiple</span> <span class="pre">target</span> <span class="pre">patterns.</span> <span class="pre">Stop.</span></code>, it is most likely because of
+the ‘:’ in the MAXIM_LIBRARIES environment variable. This cause Make
+to think there is more than one application to build (the ‘:’
+character is a separator in GNU Make). Using MSYS2, make sure you
+supply <code class="docutils literal notranslate"><span class="pre">/c/</span></code> as the path to your Windows hard drive e.g
+<code class="docutils literal notranslate"><span class="pre">MAXIM_LIBRARIES=/c/MaximSDK/Libraries</span></code>. - If rebuilding the
+application, it’s wise to fully delete the <code class="docutils literal notranslate"><span class="pre">build/</span></code> folder between
+builds due to the way No-OS’s build system works. Ensure every build
+starts fresh this way before attempting to re-build the software.</p>
+</div>
+</section>
+</section>
+<section id="flashing-the-software">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Flashing the Software</a><a class="headerlink" href="#flashing-the-software" title="Link to this heading"></a></h2>
+<p>With the MAX32670 EVKit connected via USB port, the software can be
+flashed by calling <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">run</span></code> from the project folder. The MAX32670 EV
+Kit should enumerate as a USB device called “CMSIS-DAP”, and show up
+similar to a USB Flash Drive under <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">PC</span></code> in Windows File Explorer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Log of &quot;make run&quot; Output
+
+$ make run
+
+[11:25:54] Building for maxim
+[11:25:54] Done (build/z-adxl-max32670-ad5421.elf)
+Open On-Chip Debugger (Analog Devices 0.12.0-1.0.0-7)  OpenOCD 0.12.0 (2023-09-27-07:53)
+Licensed under GNU GPL v2
+Report bugs to &lt;processor.tools.support@analog.com&gt;
+DEPRECATED! use &#39;adapter driver&#39; not &#39;interface&#39;
+DEPRECATED! use &#39;adapter srst delay&#39; not &#39;adapter_nsrst_delay&#39;
+DEPRECATED! use &#39;adapter srst pulse_width&#39; not &#39;adapter_nsrst_assert_width&#39;
+Info : CMSIS-DAP: SWD supported
+Info : CMSIS-DAP: Atomic commands supported
+Info : CMSIS-DAP: Test domain timer supported
+Info : CMSIS-DAP: FW Version = 2.0.0
+Info : CMSIS-DAP: Serial# = 0423170264fa4de900000000000000000000000097969906
+Info : CMSIS-DAP: Interface Initialised (SWD)
+Info : SWCLK/TCK = 1 SWDIO/TMS = 1 TDI = 0 TDO = 0 nTRST = 0 nRESET = 1
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 2000 kHz
+Info : SWD DPIDR 0x2ba01477
+Info : [max32xxx.cpu] Cortex-M4 r0p1 processor detected
+Info : [max32xxx.cpu] target has 6 breakpoints, 4 watchpoints
+Info : starting gdb server for max32xxx.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+[max32xxx.cpu] halted due to debug-request, current mode: Handler HardFault
+xPSR: 0xa1000003 pc: 0x10009376 msp: 0x2001ff00
+Warn : [max32xxx.cpu] Only resetting the Cortex-M core, use a reset-init event handler to reset any peripherals or configure hardware srst support.
+[max32xxx.cpu] halted due to debug-request, current mode: Thread
+xPSR: 0x01000000 pc: 0x000001b4 msp: 0x20004000
+** Programming Started **
+** Programming Finished **
+** Verify Started **
+** Verified OK **
+** Resetting Target **
+Warn : [max32xxx.cpu] Only resetting the Cortex-M core, use a reset-init event handler to reset any peripherals or configure hardware srst support.
+shutdown command invoked
+[11:26:00] z-adxl-max32670-ad5421.elf uploaded to board
+</pre></div>
+</div>
+</section>
+<section id="connecting-to-the-serial-port">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Connecting to the Serial Port</a><a class="headerlink" href="#connecting-to-the-serial-port" title="Link to this heading"></a></h2>
+<p>The serial port on the MAX32670 EV Kit comes through the USB connector
+and using 115200 baud, 8 bits, No Parity, 1 Stop bit (8-N-1) settings.
+To view the serial port output, use a serial monitor such as
+<a class="reference external" href="https://teratermproject.github.io/index-en.html">TeraTerm</a> or any
+functional equivalent. A USB COM port should show up with the USB Name
+“mbed Serial Port”. Connect to this and you should see the accelerometer
+output and corresponding DAC value being printed repeatedly.</p>
+<figure class="align-default" id="id7">
+<img alt="Serial Port Output" src="../../../_images/serial-output.png" />
+<figcaption>
+<p><span class="caption-number">Figure 7 </span><span class="caption-text">Serial Port Output</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Otherwise, the application has most likely hit an error and stopped
+printing. This can be due to any of the devices having a communication
+problem, or the AD5421 hits a FAULT, for example. Press the RSTN button
+on the MAX32670 EV Kit to restart the application.</p>
 </section>
 </section>
 
