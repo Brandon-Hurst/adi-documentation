@@ -103,6 +103,7 @@
 <li><a class="reference internal" href="#boards">Boards</a></li>
 <li><a class="reference internal" href="#ad5421-setup">AD5421 Setup</a><ul>
 <li><a class="reference internal" href="#power">Power</a></li>
+<li><a class="reference internal" href="#optional-troubleshooting-with-the-ad5421-gui">[OPTIONAL] Troubleshooting with the AD5421 GUI</a></li>
 <li><a class="reference internal" href="#soldering-for-the-ad5421">Soldering for the AD5421</a></li>
 <li><a class="reference internal" href="#spi-connection">SPI Connection</a></li>
 <li><a class="reference internal" href="#jumper-settings-for-the-ad5421">Jumper Settings for the AD5421</a></li>
@@ -415,14 +416,27 @@ this guide to avoid damaging boards.</p>
 <p><span class="caption-number">Figure 3 </span><span class="caption-text">Eval-SDP-CB1Z to AD5421 connection</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
+</section>
+<section id="optional-troubleshooting-with-the-ad5421-gui">
+<h4>[OPTIONAL] Troubleshooting with the AD5421 GUI<a class="headerlink" href="#optional-troubleshooting-with-the-ad5421-gui" title="Link to this heading"></a></h4>
+<p>Note that it is possible at this point to verify communication with the <a class="icon adi reference external" href="https://www.analog.com/EVAL-AD5421">EVAL-AD5421</a> GUI. The GUI can be located on the Product Page under “AD5421 Evaluation Software”.</p>
+<p>Once the Eval GUI has been installed, you can verify communication by connecting the SDP-BZ board to the AD5421 kit as shown in the above image, and connecting power over USB.</p>
+<p>Then, launch the GUI. You should see no popup warnings, and the Control Register is read by the GUI. You can also toggle various parameters such as the Auto Fault Readback to check that the Control Register can be be properly read &amp; written, verifying SPI communication from the SDP-BZ board to the AD5421 and proper power-up for the AD5421.</p>
+<figure class="align-default">
+<img alt="Successful EVAL-AD5421 Communication" src="../../../_images/sdp-ad5421.jpg" />
+</figure>
+<p>If communication to the AD5421 fails, a warning popup will show as follows:</p>
+<figure class="align-default">
+<img alt="Failed EVAL-AD5421 Communication" src="../../../_images/ad5421-gui-fail.png" />
+</figure>
+</section>
+<section id="soldering-for-the-ad5421">
+<h4>Soldering for the AD5421<a class="headerlink" href="#soldering-for-the-ad5421" title="Link to this heading"></a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Please disconnect power from all sources before
 continuing.</p>
 </div>
-</section>
-<section id="soldering-for-the-ad5421">
-<h4>Soldering for the AD5421<a class="headerlink" href="#soldering-for-the-ad5421" title="Link to this heading"></a></h4>
 <p>To work with the AD5421, TP1-6 (for SPI and FAULTIN/LDAC) and TP19
 should be soldered in. TP19 is just so the boards can directly share a
 GND pin, and also depends on the position of the Reg_Sel1 jumper (do NOT
