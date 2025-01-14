@@ -7,7 +7,7 @@
 
     <title>4-20mA Accelerometer-Correlated Industrial Output &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8e8a900e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/style.min.css?v=7f94efc5" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/style.min.css?v=a9555194" />
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -493,7 +493,7 @@ oscilloscope)</p></li>
 markings for SPI0 on the MAX32670 EVKit. ADXL382 uses the following
 pins:</p>
 <ul class="simple">
-<li><p>V_AUX / GND</p></li>
+<li><p>V_AUX (3.3V) / GND</p></li>
 <li><p>P0.2 (SPI0 MISO)</p></li>
 <li><p>P0.3 (SPI0 MOSI)</p></li>
 <li><p>P0.4 (SPI0 SCK)</p></li>
@@ -519,7 +519,7 @@ MAX32670 via the RSTN button (SW2).</p>
 </section>
 <section id="flashing-the-prebuilt-demo">
 <h2>Flashing the ‘Prebuilt’ Demo<a class="headerlink" href="#flashing-the-prebuilt-demo" title="Link to this heading"></a></h2>
-<p>Under the <code class="docutils literal notranslate"><span class="pre">prebuilt</span></code> folder, there will be an ELF file that contains
+<p>Under the <code class="docutils literal notranslate"><span class="pre">prebuilt</span></code> folder, there will be a .BIN file (e.g. <code class="docutils literal notranslate"><span class="pre">adxl382-max32670-ad5421-v1.0.0.bin</span></code>) that contains
 pre-built code. For those who do not want to compile the code
 themselves, the prebuilt binary may be flashed to the MCU instead. To do
 so, visit the following page:
@@ -534,7 +534,7 @@ prebuilt/ folder or the MAX32670 file to update the programmer on the
 MAX32670 board.</p>
 </div>
 <p>Once you have updated the above firmware, you should see a DAPLINK drive
-show up on your PC. At this point, you can drag-n-drop the .elf file
+show up on your PC. At this point, you can drag-n-drop the .BIN file
 onto the DAPLINK drive to program the prebuilt binary.</p>
 <figure class="align-default" id="id6">
 <img alt="drag-n-drop" src="../../../_images/drag-n-drop-fw.png" />
