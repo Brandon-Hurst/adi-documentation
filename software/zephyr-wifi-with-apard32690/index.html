@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Software Defined Instrumentation &#8212; System Level Documentation  documentation</title>
+    <title>Networking Support - WiFi / T1L &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8e8a900e" />
     <link rel="stylesheet" type="text/css" href="../../_static/app.min.css?v=9cb8e28d" />
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
@@ -15,8 +15,8 @@
     <link rel="icon" href="../../_static/icon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction to Electronics" href="../workshops_introduction_to_electronics/index.html" />
-    <link rel="prev" title="What software do I need for my SDR?" href="../workshop_what_sw_for_sdr/index.html" />
+    <link rel="next" title="User guides" href="../../eval/user-guide/index.html" />
+    <link rel="prev" title="PyADI-IIO" href="../pyadi-iio/index.html" />
    
   
   <meta name="repository" content="documentation">
@@ -88,13 +88,19 @@
         </div>
         <nav>
           <ul>
-<li><a class="reference internal" href="#">Software Defined Instrumentation</a><ul>
-<li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#theoretical-content">Theoretical content</a></li>
-<li><a class="reference internal" href="#hands-on-activity">Hands-on activity</a></li>
-<li><a class="reference internal" href="#slide-deck-and-booklet">Slide Deck and Booklet</a></li>
-<li><a class="reference internal" href="#takeaways">Takeaways</a></li>
-<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#">Networking Support - WiFi / T1L</a><ul>
+<li><a class="reference internal" href="#wifi">WiFi</a></li>
+<li><a class="reference internal" href="#pre-built-firmware-for-esp-nina-w102">Pre-Built Firmware for ESP NINA-W102</a></li>
+<li><a class="reference internal" href="#building-nina-w102-firmware">Building NINA-W102 Firmware</a></li>
+<li><a class="reference internal" href="#programming-the-nina-w102-on-ad-apard32690">Programming the NINA-W102 on AD-APARD32690</a></li>
+<li><a class="reference internal" href="#standalone-programming">Standalone Programming</a></li>
+<li><a class="reference internal" href="#at-command-verification">AT Command Verification</a></li>
+<li><a class="reference internal" href="#integrating-into-zephyr">Integrating Into Zephyr</a><ul>
+<li><a class="reference internal" href="#apard-wifi-overlay">apard_wifi.overlay</a></li>
+<li><a class="reference internal" href="#apard-wifi-conf">apard_wifi.conf</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
 </ul>
 </li>
 </ul>
@@ -165,35 +171,35 @@ Content on this topic
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Software</span></p>
-<ul>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4"/><div class="collapse"><a class="reference internal" href="../../software/iio-oscilloscope/index.html">IIO Oscilloscope</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1"/><div class="collapse"><a class="reference internal" href="../../software/iio-oscilloscope/adrv9009/index.html">ADRV9009</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/iio-oscilloscope/adrv9009/plugin.html">Standard Plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/iio-oscilloscope/adrv9009/advanced-plugin.html">Advanced plugin</a></li>
+<ul class="current">
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4"/><div class="collapse"><a class="reference internal" href="../iio-oscilloscope/index.html">IIO Oscilloscope</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1"/><div class="collapse"><a class="reference internal" href="../iio-oscilloscope/adrv9009/index.html">ADRV9009</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../iio-oscilloscope/adrv9009/plugin.html">Standard Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iio-oscilloscope/adrv9009/advanced-plugin.html">Advanced plugin</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5" id="toctree-collapse-5"/><div class="collapse"><a class="reference internal" href="../../software/libiio/index.html">Libiio</a><label for="toctree-collapse-5"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libiio/internals.html">About libiio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libiio/cli.html">Command line utility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libiio/tips-tricks.html">Tips &amp; Tricks</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5" id="toctree-collapse-5"/><div class="collapse"><a class="reference internal" href="../libiio/index.html">Libiio</a><label for="toctree-collapse-5"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libiio/internals.html">About libiio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libiio/cli.html">Command line utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libiio/tips-tricks.html">Tips &amp; Tricks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-6" id="toctree-collapse-6"/><div class="collapse"><a class="reference internal" href="../../software/libm2k/index.html">Libm2k</a><label for="toctree-collapse-6"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libm2k/calibration.html">Calibration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libm2k/digital_communication.html">Digital communication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libm2k/m2kcli.html">Command line utility</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-6" id="toctree-collapse-6"/><div class="collapse"><a class="reference internal" href="../libm2k/index.html">Libm2k</a><label for="toctree-collapse-6"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libm2k/calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libm2k/digital_communication.html">Digital communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libm2k/m2kcli.html">Command line utility</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-7" id="toctree-collapse-7"/><div class="collapse"><a class="reference internal" href="../../software/matlab/index.html">MATLAB &amp; Simulink Toolboxes</a><label for="toctree-collapse-7"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../software/matlab/hsx-toolbox/index.html">High Speed Converter Toolbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/matlab/transceiver-toolbox/index.html">Transceiver Toolbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/matlab/bsp-extend.html">Extending Device Interfaces</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-7" id="toctree-collapse-7"/><div class="collapse"><a class="reference internal" href="../matlab/index.html">MATLAB &amp; Simulink Toolboxes</a><label for="toctree-collapse-7"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/hsx-toolbox/index.html">High Speed Converter Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/transceiver-toolbox/index.html">Transceiver Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/bsp-extend.html">Extending Device Interfaces</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../software/pyadi-iio/index.html">PyADI-IIO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../software/zephyr-wifi-with-apard32690/index.html">Networking Support - WiFi / T1L</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyadi-iio/index.html">PyADI-IIO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Networking Support - WiFi / T1L</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Evaluation Boards</span></p>
 <ul>
@@ -325,19 +331,19 @@ Content on this topic
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Learning</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-14" id="toctree-collapse-14" checked=""/><div class="collapse"><a class="reference internal" href="../index.html">Learning! Tutorials, Workshops, Etc</a><label for="toctree-collapse-14"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../tutorial_prec_adc/index.html">Precision ADC Tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../converter_connectivity_tutorial/index.html">Converter Connectivity Tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sw_infrastructure/index.html">Key ADI’s Software Infrastructure for designing with ADCs, DACs, and Sensors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools_for_ls/index.html">Tools for Low Speed Mixed Signal System Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools_for_prec_wb/index.html">Tools for Precision Wideband Mixed Signal System Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools_for_hs/index.html">Tools for High-Speed Mixed Signal System Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workshop_what_sw_for_sdr/index.html">What software do I need for my SDR?</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Software Defined Instrumentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workshops_introduction_to_electronics/index.html">Introduction to Electronics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workshops_embedded_baremetal/index.html">Embedded Baremetal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workshops_embedded_linux/index.html">Embedded Linux</a></li>
+<ul>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-14" id="toctree-collapse-14"/><div class="collapse"><a class="reference internal" href="../../learning/index.html">Learning! Tutorials, Workshops, Etc</a><label for="toctree-collapse-14"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/tutorial_prec_adc/index.html">Precision ADC Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/converter_connectivity_tutorial/index.html">Converter Connectivity Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/sw_infrastructure/index.html">Key ADI’s Software Infrastructure for designing with ADCs, DACs, and Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/tools_for_ls/index.html">Tools for Low Speed Mixed Signal System Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/tools_for_prec_wb/index.html">Tools for Precision Wideband Mixed Signal System Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/tools_for_hs/index.html">Tools for High-Speed Mixed Signal System Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/workshop_what_sw_for_sdr/index.html">What software do I need for my SDR?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/workshops_software_defined_instrumentation/index.html">Software Defined Instrumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/workshops_introduction_to_electronics/index.html">Introduction to Electronics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/workshops_embedded_baremetal/index.html">Embedded Baremetal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../learning/workshops_embedded_linux/index.html">Embedded Linux</a></li>
 </ul>
 </li>
 </ul>
@@ -362,239 +368,215 @@ Content on this topic
         <div class="bodywrapper" id="top-anchor">
           <div class="body" role="main">
             
-  <section id="software-defined-instrumentation">
-<h1>Software Defined Instrumentation<a class="headerlink" href="#software-defined-instrumentation" title="Link to this heading"></a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is a work in progress.</p>
-</div>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+  <section id="networking-support-wifi-t1l">
+<h1>Networking Support - WiFi / T1L<a class="headerlink" href="#networking-support-wifi-t1l" title="Link to this heading"></a></h1>
+<p>The following document describes how to build and flash firmware for the NINA-W102 module on the <a class="icon adi reference external" href="https://www.analog.com/AD-APARD32690-SL">MAX32690 Arduino Form-Factor Board</a>.
+It will also describe how to build and  flash the Zephyr Wifi sample to work with this board once the NINA-W102 has been flashed.</p>
+<p>Some familiarity with Zephyr and building / flashing Zephyr applications is assumed. If you are new to Zephyr, please start with the Getting Started Guide:
+<a class="reference external" href="https://docs.zephyrproject.org/latest/develop/getting_started/index.html">https://docs.zephyrproject.org/latest/develop/getting_started/index.html</a></p>
+<section id="wifi">
+<h2>WiFi<a class="headerlink" href="#wifi" title="Link to this heading"></a></h2>
+<p>The wifi chip on the AD-APARD32690 is a uBlox NINA-W102 “Open CPU” Wifi/Bluetooth module.  The modules is based on an ESP32 chip, with “Open CPU” meaning it does NOT come preloaded with firmware from uBlox, but rather is intended for customers to develop their own firmware to run on it.</p>
+<p>Details of the chip: <a class="reference external" href="https://www.u-blox.com/en/product/nina-w10-series-open-cpu">https://www.u-blox.com/en/product/nina-w10-series-open-cpu</a></p>
+<p>Software must be developed using the ESP32 SDK: <a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html</a></p>
+<p>Core ESP32 Device:  ESP32-D0WDQ6-V3</p>
 </section>
-<section id="theoretical-content">
-<h2>Theoretical content<a class="headerlink" href="#theoretical-content" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>theoretical background for instrumentation devices</p></li>
-<li><p>ADALM2000 board overview, features, description</p></li>
-<li><p>ADALM2000 connectivity</p></li>
-<li><p>Scopy software overview and instruments description</p></li>
-</ul>
-<p><strong>What is Software Defined Instrumentation?</strong></p>
-<p>A single device encapsulating more instruments used for measurements, signal generation, signal acquisition, etc., powered by a PC open-source software that allows the user to customize the measurements, since the software is residing more on the host PC/mobile device instead of on the instrument.</p>
-<p>Bonus: it has a pocket size!</p>
-<figure class="align-center" id="id1">
-<img alt="../../_images/sdi_1.png" src="../../_images/sdi_1.png" />
-<figcaption>
-<p><span class="caption-number">Figure 1 </span><span class="caption-text">SDI then vs now</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p><strong>ADALM2000</strong></p>
-<p>The ADALM2000 (M2K) Advanced Active Learning Module is an affordable USB-powered data acquisition module, that can be used to introduce fundamentals of electrical engineering in a self or instructor lead setting.</p>
-<p>With 12-bit ADCs and DACs running at 100 MSPS, brings the power of high-performance lab equipment to the palm of your hand, enabling electrical engineering students and hobbyists to explore signals and systems into the tens of MHz without the cost and bulk associated with traditional lab gear.</p>
-<p>When coupled with Analog Devices’ Scopy™ graphical application software running on a computer, provides the user with high performance instrumentation.</p>
-<figure class="align-left">
-<img alt="../../_images/m2k.png" src="../../_images/m2k.png" />
-</figure>
-<figure class="align-center" id="id2">
-<img alt="../../_images/scopy.png" src="../../_images/scopy.png" />
-<figcaption>
-<p><span class="caption-number">Figure 2 </span><span class="caption-text">M2k and Scopy software</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
-</figcaption>
-</figure>
+<section id="pre-built-firmware-for-esp-nina-w102">
+<h2>Pre-Built Firmware for ESP NINA-W102<a class="headerlink" href="#pre-built-firmware-for-esp-nina-w102" title="Link to this heading"></a></h2>
+<p>ESP provides pre-built firmware for integrating Wifi and BLE through AT commands.  This can be found here: <a class="reference external" href="https://www.espressif.com/en/products/sdks/esp-at/overview">https://www.espressif.com/en/products/sdks/esp-at/overview</a>. There is also a Zephyr driver for this firmware to make it look like generic Wifi here: <a class="reference external" href="https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/esp_at">https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/esp_at</a> and a block talking about using the AT Firmware with Zephyr for a specific ESP32 module: <a class="reference external" href="https://blog.golioth.io/esp32-esp-at-enables-connectivity-on-any-zephyr-project/">https://blog.golioth.io/esp32-esp-at-enables-connectivity-on-any-zephyr-project/</a>.</p>
+<p>However, the pre-built firmware is for ESP32 development boards which have a different pin out than the NINA-W102.  Instructions are provided (<a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_set_AT_port_pin.html">https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_set_AT_port_pin.html</a>) describing how to change the port pins for the firmware image.</p>
 </section>
-<section id="hands-on-activity">
-<h2>Hands-on activity<a class="headerlink" href="#hands-on-activity" title="Link to this heading"></a></h2>
-<p>By the end of this workshop, you will learn:</p>
-<ul class="simple">
-<li><p>How to use a desktop Oscilloscope and Signal generator channels by operating a Network Analyzer, as well as Digital Pattern generator</p></li>
-<li><p>How to interface an analog front end simple circuit with M2K channels</p></li>
-<li><p>How to generate and display signals with the lab tools Analog Devices provides</p></li>
-</ul>
-<p><strong>Activities</strong></p>
-<ul class="simple">
-<li><p>breadboard Low-Pass filter implementation, two stages,</p></li>
-<li><p>Bode plot visualisation,</p></li>
-<li><p>usage of power supplies and scope inputs</p></li>
-<li><p>SPI communication with ADALP2000 AD5626 part, DAC converter,</p></li>
-<li><p>usage of Pattern Generator SPI interface and Scope channels for analog signals</p></li>
-</ul>
-<p><strong>Pre-requisites</strong></p>
-<ul class="simple">
-<li><p><a class="icon git reference external" href="https://github.com/analogdevicesinc/plutosdr-m2k-drivers-win/releases">ADALM2000 drivers installation</a></p></li>
-<li><p><a class="icon git reference external" href="https://github.com/analogdevicesinc/scopy/releases/tag/v1.4.1">Install Scopy software</a></p></li>
-</ul>
-<p><strong>Hands-on activity 1 - Scope and Signal generator channels – Cascaded LP filters</strong></p>
-<p><em>Materials</em></p>
-<ul class="simple">
-<li><p>ADALM2000 Active Learning Module</p></li>
-<li><p>Solder-less breadboard, and jumper wire kit</p></li>
-<li><p>2 x 1 KΩ resistors</p></li>
-<li><p>2 x 0.1 uF capacitors (marked 104)</p></li>
-</ul>
-<p><strong>First Stage Filter</strong></p>
-<p><em>Hardware setup</em></p>
-<figure class="align-center" id="id3">
-<img alt="../../_images/demo1hw2.png" src="../../_images/demo1hw2.png" />
-<figcaption>
-<p><span class="caption-number">Figure 3 </span><span class="caption-text">Schematic for first stage filter</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id4">
-<img alt="../../_images/demo1bb2.png" src="../../_images/demo1bb2.png" />
-<figcaption>
-<p><span class="caption-number">Figure 4 </span><span class="caption-text">Breadboard connections for first stage filter</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p>Steps</p>
+<section id="building-nina-w102-firmware">
+<h2>Building NINA-W102 Firmware<a class="headerlink" href="#building-nina-w102-firmware" title="Link to this heading"></a></h2>
+<p>Before proceeding, ensure that P50 and P55 on the APARD32690 board are in position 1-2 if you are trying to get the NINA-W102 UART data through the SWD connector. Be sure to switch this back later for testing the Zephyr application.</p>
+<p>The following instructions mostly come from this document:
+<a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_clone_project_and_compile_it.html">https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_clone_project_and_compile_it.html</a></p>
+<p>Install the ESP SDK: <a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html</a></p>
+<p>Open the ESP-IDF Command Prompt and run the following steps:</p>
 <ol class="arabic simple">
-<li><p>Open Network Analyzer</p></li>
-<li><p>Set the sweep to logarithmic</p></li>
-<li><p>Set the start frequency to 100Hz and stop to 20kHz</p></li>
-<li><p>Set the magnitude axis between -50dB and 10dB</p></li>
-<li><p>Set the phase axis between -180 and 90 degrees</p></li>
+<li><p>Get the project: git clone –recursive <a class="reference external" href="https://github.com/espressif/esp-at.git">https://github.com/espressif/esp-at.git</a></p></li>
+<li><dl class="simple">
+<dt>Run the builder:  python build.py install</dt><dd><ul class="simple">
+<li><p>Select PLATFORM_ESP32</p></li>
+<li><p>Select module ESP32-D2WD as it has the same flash size as the NINA-W102, making it easier to configure</p></li>
+<li><p>When asked about silent mode, select Y.  Otherwise, if silent mode is not enable, you’ll need to set the compiler options later to Optimize for Size to get it to fit</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Edit the components/customized_partitions/raw_data/factory_param_data.csv file so the D2WD line reads the following:</dt><dd><ul class="simple">
+<li><p>PLATFORM_ESP32,ESP32-D2WD,”2MB flash, No OTA”,4,78,0,1,13,CN,115200,1,3,-1,-1</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Build the project by running python build.py build</p></li>
+<li><p>The complete firmware image is located in buildfactoryfactory_ESP32-&lt;device&gt;.bin and can be archived for later loading of devices.</p></li>
 </ol>
-<figure class="align-center" id="id5">
-<img alt="../../_images/demo1waves2.png" src="../../_images/demo1waves2.png" />
-<figcaption>
-<p><span class="caption-number">Figure 5 </span><span class="caption-text">Results for Bode Diagram</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p><strong>Second stage filter</strong></p>
-<figure class="align-left">
-<img alt="../../_images/demo1hw11.png" src="../../_images/demo1hw11.png" />
-</figure>
-<figure class="align-center" id="id6">
-<img alt="../../_images/demo1bb11.png" src="../../_images/demo1bb11.png" />
-<figcaption>
-<p><span class="caption-number">Figure 6 </span><span class="caption-text">Schematic and Breadboard connections</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p>Steps:</p>
-<ol class="arabic simple">
-<li><p>Connect the Scope Channel 2 after the first RC group and do a single sweep</p></li>
-<li><p>Take a signal snapshot to preserve the result as a reference</p></li>
-<li><p>Connect the Scope Channel 2 after the second RC stage and perform another sweep</p></li>
-</ol>
-<figure class="align-center" id="id7">
-<img alt="../../_images/demo1waves1.png" src="../../_images/demo1waves1.png" />
-<figcaption>
-<p><span class="caption-number">Figure 7 </span><span class="caption-text">Results for Bode Diagram</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p><strong>Hands-on activity 2 - Digital Pattern Generator and Scope – AD5626 component – SPI controlled and analog signal visualized using Scope</strong></p>
-<p><em>Materials</em></p>
-<ul class="simple">
-<li><p>ADALM2000 Active Learning Module</p></li>
-<li><p>Solder-less breadboard</p></li>
-<li><p>Jumper wires</p></li>
-<li><p>1 - AD5626 12-bit nanoDAC</p></li>
-<li><p>1 x 2.2 KΩ resistor</p></li>
-<li><p>1 x 0.001 uF capacitor(marked 102)</p></li>
-<li><p>1 x 0.1 uF capacitor(marked 104)</p></li>
-<li><p>1 x 10 uF capacitor</p></li>
-</ul>
-<p><em>Theory of operation</em></p>
-<p>SPI Transfer:</p>
-<figure class="align-center">
-<img alt="../../_images/demo2spi.png" src="../../_images/demo2spi.png" />
-</figure>
-<figure class="align-center" id="id8">
-<img alt="../../_images/demo2spi1.png" src="../../_images/demo2spi1.png" />
-<figcaption>
-<p><span class="caption-number">Figure 8 </span><span class="caption-text">SPI Interface signals</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p><em>Hardware Setup</em></p>
-<figure class="align-left">
-<img alt="../../_images/demo2hw1.png" src="../../_images/demo2hw1.png" />
-</figure>
-<figure class="align-center" id="id9">
-<img alt="../../_images/demo2bb.png" src="../../_images/demo2bb.png" />
-<figcaption>
-<p><span class="caption-number">Figure 9 </span><span class="caption-text">Schematic and Breadboard connections</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p><em>Steps</em></p>
-<ul class="simple">
-<li><p>Connect the Vp power supply to the Vdd of the chip, set it to 5V</p></li>
-<li><p>Connect the GND pin to the GND of the M2K</p></li>
-<li><p>Beware not to connect the supply pins of the chip to the positive power of ADALM2000 and GND in a reversed order!</p></li>
-<li><p>Connect the digital pins to the corresponding chip pins as shown in the schematic.</p></li>
-<li><p>Configure the SPI interface in pattern generator to match the timing diagram of the AD5626 datasheet.</p></li>
-</ul>
-<p><em>Pattern generator signals</em></p>
-<ul class="simple">
-<li><p>DIO0 - /CS</p></li>
-<li><p>DIO1 – SCLK</p></li>
-<li><p>DIO2 – SDIN</p></li>
-<li><p>DIO3 - /LDAC</p></li>
-<li><p>DIO4 - /CLR</p></li>
-</ul>
-<p><em>Setup</em></p>
-<ul class="simple">
-<li><p>According to the time diagram, minimum SPI clock period is 30ns, set the SPI frequency to 1MHz</p></li>
-<li><p>Set CLK polarity and Phase to 1</p></li>
-<li><p>Set number of bytes per frame to 2</p></li>
-<li><p>Configure the /LDAC and /CLR signals:</p></li>
-<li><p>According to the AD5626 datasheet, the shift register contents are updated on the rising edge of /LDAC if /CLR is high.</p></li>
-<li><p>Set the pattern of DIO4 (/CLR) as “Number” and enter the value 1.</p></li>
-<li><p>/LDAC signal(DIO3) should have a rising edge before /CS falling edge and should be high as long as bits are transmitted serially.</p></li>
-<li><p>With respect to the stated conditions, the DIO3 signal needs to be set as pulse type 100kHz frequency, Low number of samples equal to 5, High 75, for the set frequency of the SPI 1MHz.</p></li>
-</ul>
-<figure class="align-center" id="id10">
-<img alt="../../_images/demo2scopy3.png" src="../../_images/demo2scopy3.png" />
-<figcaption>
-<p><span class="caption-number">Figure 10 </span><span class="caption-text">SPI messages</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p><em>Scopy instruments setup</em></p>
-<ul class="simple">
-<li><p>Open Scope instrument and connect Scope channel 1 to output pin of the AD5626 (pin 8 of the IC)</p></li>
-<li><p>Enable the positive 5V Power supply</p></li>
-<li><p>Set some values in the Data control of the pattern generator SPI configurator</p></li>
-<li><p>Enable Channel 1 measurements to view the analog values</p></li>
-<li><p>Change the initially transmitted values</p></li>
-</ul>
-<figure class="align-center" id="id11">
-<img alt="../../_images/demo2scopy11.png" src="../../_images/demo2scopy11.png" />
-<figcaption>
-<p><span class="caption-number">Figure 11 </span><span class="caption-text">Analog Voltage from the DAC</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
-</figcaption>
-</figure>
 </section>
-<section id="slide-deck-and-booklet">
-<h2>Slide Deck and Booklet<a class="headerlink" href="#slide-deck-and-booklet" title="Link to this heading"></a></h2>
-<p>Since this tutorial is also designed to be presented as a live, hands-on
-workshop, a slide deck is provided here:</p>
-<div class="admonition-download admonition">
-<p class="admonition-title">Download</p>
-<p><a class="reference download internal" download="" href="../../_downloads/46eecfaaebdcc8849d920b1e5ecc7d63/SDI_Workshop_2023.pptx"><code class="xref download docutils literal notranslate"><span class="pre">Software</span> <span class="pre">Defined</span> <span class="pre">Instrumentation</span> <span class="pre">Slide</span> <span class="pre">Deck</span></code></a></p>
+<section id="programming-the-nina-w102-on-ad-apard32690">
+<h2>Programming the NINA-W102 on AD-APARD32690<a class="headerlink" href="#programming-the-nina-w102-on-ad-apard32690" title="Link to this heading"></a></h2>
+<p>A USB-UART adapter will be needed. A good one can be found here if needed:
+<a class="reference external" href="https://ftdichip.com/products/ttl-232r-3v3/">https://ftdichip.com/products/ttl-232r-3v3/</a></p>
+<ol class="arabic">
+<li><p>Connect a USB-UART adapter to the NINA-W102 through P38-2 and P56-2, and a ground on P2 or P5</p></li>
+<li><p>Prior to powering up the board, pull the ESP32 SYS_BOOT pin low, but connecting P47 to ground</p></li>
+<li><p>Power up the board.  You can verify the bootloader started correctly by observing the USB-UART adapter in a terminal.  There should be text similar to the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rst:0x1 (POWERON_RESET),boot:0x23 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+</pre></div>
 </div>
-<p>A complete booklet of the hands-on activity is also provided, as a companion to
-following the tutorial yourself:</p>
-<div class="admonition-download admonition">
-<p class="admonition-title">Download</p>
-<p><a class="reference download internal" download="" href="../../_downloads/691e8439f7828709ac2c880dae017a57/SDI_Booklet.docx"><code class="xref download docutils literal notranslate"><span class="pre">Software</span> <span class="pre">Defined</span> <span class="pre">Instrumentation</span> <span class="pre">Booklet</span></code></a></p>
+</li>
+</ol>
+<p>4. From the ESP command line, run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">build.py</span> <span class="pre">-p</span> <span class="pre">&lt;COMPORT&gt;</span> <span class="pre">flash</span></code>. The flash operation should be performed
+Depending on the integrity of the cables (bad jumper wires, etc), you may be have to add the -b 115200 forced slower baud rate for data integrity.</p>
+</section>
+<section id="standalone-programming">
+<h2>Standalone Programming<a class="headerlink" href="#standalone-programming" title="Link to this heading"></a></h2>
+<p>The NINA-W102 device may be flashed using the stand alone ESP Flash download tool without needing to install the full SDK.</p>
+<p>FW image built with 115200bps basic buad rate and no flow control: <strong>factory_ESP32-AT_115200_NoFlow.bin</strong></p>
+<p>Follow the instructions in the previous section up through step 3, then consult the ESP-AT Downloading guide for using the Flash Download Tool on Windows. Selecting the combined factory firmware image, as described above.
+<a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/Get_Started/Downloading_guide.html#flash-at-firmware-into-your-device">https://docs.espressif.com/projects/esp-at/en/latest/esp32/Get_Started/Downloading_guide.html#flash-at-firmware-into-your-device</a></p>
+</section>
+<section id="at-command-verification">
+<h2>AT Command Verification<a class="headerlink" href="#at-command-verification" title="Link to this heading"></a></h2>
+<p>The AT command set can be found here: <a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/AT_Command_Set/index.html">https://docs.espressif.com/projects/esp-at/en/latest/esp32/AT_Command_Set/index.html</a>.  Some basic AT commands can be done to verify the part is programmed correctly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">GMR</span>
+<span class="n">AT</span> <span class="n">version</span><span class="p">:</span><span class="mf">4.1.0.0</span><span class="o">-</span><span class="n">dev</span><span class="p">(</span><span class="n">eb730f6</span> <span class="o">-</span> <span class="n">ESP32</span> <span class="o">-</span> <span class="n">Jan</span>  <span class="mi">3</span> <span class="mi">2024</span> <span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">)</span>
+<span class="n">SDK</span> <span class="n">version</span><span class="p">:</span><span class="n">v5</span><span class="mf">.0.4</span><span class="o">-</span><span class="n">dirty</span>
+<span class="nb">compile</span> <span class="n">time</span><span class="p">(</span><span class="mi">899230</span><span class="n">b2</span><span class="p">):</span><span class="n">Jan</span> <span class="mi">14</span> <span class="mi">2024</span> <span class="mi">17</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">03</span>
+<span class="n">Bin</span> <span class="n">version</span><span class="p">:</span><span class="n">v3</span><span class="mf">.2.0.0</span><span class="p">(</span><span class="n">ESP32</span><span class="o">-</span><span class="n">D2WD</span><span class="p">)</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CWINIT</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CWMODE</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CWLAP</span>
+<span class="o">+</span><span class="n">CWLAP</span><span class="p">:(</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;MySSID&quot;</span><span class="p">,</span><span class="o">-</span><span class="mi">74</span><span class="p">,</span><span class="s2">&quot;94:a6:7e:e3:b8:38&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Finished code block</p>
+</section>
+<section id="integrating-into-zephyr">
+<h2>Integrating Into Zephyr<a class="headerlink" href="#integrating-into-zephyr" title="Link to this heading"></a></h2>
+<p>Create files in your Zephyr workspace called <cite>apard_wifi.conf</cite> and <cite>apard_wifi.overlay</cite>.</p>
+<p>Next, place the text below in these files:</p>
+<section id="apard-wifi-overlay">
+<h3>apard_wifi.overlay<a class="headerlink" href="#apard-wifi-overlay" title="Link to this heading"></a></h3>
+<div class="highlight-dts notranslate" id="id1"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="na">uart2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pinctrl-0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&amp;</span><span class="na">uart2a_tx_p1_10</span><span class="w"> </span><span class="o">&amp;</span><span class="na">uart2a_rx_p1_9</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pinctrl-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;default&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">current-speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">115200</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="kr">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;okay&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nl">esp_wifi</span><span class="p">:</span><span class="w"> </span><span class="nf">esp-wifi</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;espressif,esp-at&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kr">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;okay&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">aliases</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wifi0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">esp_wifi</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
 </div>
 </section>
-<section id="takeaways">
-<h2>Takeaways<a class="headerlink" href="#takeaways" title="Link to this heading"></a></h2>
-<p>ADALM2000 is a very versatile tool suited to use in various applications:</p>
-<p>Lab setups</p>
-<p>Advanced measurements</p>
-<p>Learning platforms</p>
-<p>Research</p>
+<section id="apard-wifi-conf">
+<h3>apard_wifi.conf<a class="headerlink" href="#apard-wifi-conf" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate" id="id2"><div class="highlight"><pre><span></span># Enable WiFi via ESP-AT
+CONFIG_WIFI=y
+CONFIG_WIFI_ESP_AT=y
+CONFIG_WIFI_ESP_AT_MDM_RX_BUF_COUNT=40
+
+# Disable NET_L2_ETHERNET to avoid T1L PHY errors
+# when not using T1L, but enabling net-if
+CONFIG_NET_L2_ETHERNET=n
+
+# Increment max IPV4 count if using multiple net-if interfaces
+CONFIG_NET_IF_MAX_IPV4_COUNT=2
+</pre></div>
+</div>
+<p>Build your application as below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>west<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>auto<span class="w"> </span>-b<span class="w"> </span>apard32690//m4<span class="w"> </span>zephyr/samples/net/wifi/shell<span class="w"> </span>--<span class="w"> </span>-DDTC_OVERLAY_FILE<span class="o">=</span><span class="nv">$PWD</span>/apard_wifi.overlay<span class="w"> </span>-DEXTRA_CONF_FILE<span class="o">=</span><span class="nv">$PWD</span>/apard_wifi.conf
+</pre></div>
+</div>
+<p>Flash the application using a Segger JLink as below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>west<span class="w"> </span>flash<span class="w"> </span>-r<span class="w"> </span>jlink
+</pre></div>
+</div>
+<p>At this point, make sure that P55 and P50 on the APARD32690 board are in positions 2-3 to get UART data from the MAX32690.</p>
 </section>
-<section id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading"></a></h2>
-<p><em>ADALM2000 Wiki</em></p>
-<p><a class="reference external" href="https://wiki.analog.com/university/tools/m2k">m2k</a>
-<a class="reference external" href="https://wiki.analog.com/university/tools/m2k/accessories/bnc">bnc</a>
-<a class="reference external" href="https://wiki.analog.com/university/tools/m2k/accessories/power">power</a></p>
-<p><em>ADALM2000 Lab Activities</em></p>
-<p><a class="reference external" href="https://wiki.analog.com/university/courses/electronics/labs">labs</a></p>
-<p><em>Virtual classroom</em></p>
-<p><a class="icon ez reference external" href="https://ez.analog.com/community/university-program">EngineerZone</a></p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>At this point, make sure that P55 and P50 on the APARD32690 board are in positions 2-3 to get UART data from the MAX32690. Connect to a terminal application with 115200 baud, 8-N-1 UART settings. Make sure that P56 and P38 are also connected.
+The Zephyr Wifi sample application comes with a Wifi shell for doing basic Wifi interactions.  After launching the scan, and connect commands were used to successfully connect to an AP via the Zephyr network subsystem.</p>
+<p>Verify the devices installed with <cite>device list</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*** Booting Zephyr OS build zephyr-v3.5.0-4086-g0a8d03b95f84 ***
+uart:~$ device list
+devices:
+- rcc@40021000 (READY)
+- reset-controller (READY)
+- interrupt-controller@40010400 (READY)
+- gpio@48001800 (READY)
+- gpio@48001400 (READY)
+- gpio@48001000 (READY)
+- gpio@48000c00 (READY)
+- gpio@48000800 (READY)
+- gpio@48000400 (READY)
+- gpio@48000000 (READY)
+- rng@50060800 (READY)
+- serial@40008000 (READY)
+- serial@40013800 (READY)
+- esp-wifi (READY)
+uart:~$
+</pre></div>
+</div>
+<p>Request a wifi scan with wifi scan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>uart:~$ wifi scan
+Scan requested
+
+Num  | SSID                             (len) | Chan (Band)   | RSSI | Security        | BSSID             | MFP
+1    | MySSID                           9     | 10   (2.4GHz) | -70  | WPA2-PSK        |                   | Disable
+Scan request done
+</pre></div>
+</div>
+<p>Connect to a Wifi Access Point with <cite>wifi connect</cite>.  Note PSK was omitted in the following terminal log:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>uart:~$ wifi connect &quot;MySSID&quot; 1 ****PSK HERE****
+Connection requested
+Connected
+</pre></div>
+</div>
+<p>Get status information with <cite>wifi status</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>uart:~$ wifi status
+Status: successful
+==================
+State: COMPLETED
+Interface Mode: STATION
+Link Mode: UNKNOWN
+SSID: MySSID
+BSSID: &lt;__:__:__:__:__:__&gt;
+Band: 2.4GHz
+Channel: 10
+Security: UNKNOWN
+MFP: UNKNOWN
+RSSI: -69
+Beacon Interval: 0
+DTIM: 0
+TWT: Not supported
+uart:~$
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -602,8 +584,8 @@ following the tutorial yourself:</p>
           </div>
               <div class="related">
                 &nbsp;
-    <a href="../workshop_what_sw_for_sdr/index.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">What software do I need for my SDR?</a>
-    <a href="../workshops_introduction_to_electronics/index.html" title="Next document (Alt+Shift+RightArrow)" class="next">Introduction to Electronics</a>
+    <a href="../pyadi-iio/index.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">PyADI-IIO</a>
+    <a href="../../eval/user-guide/index.html" title="Next document (Alt+Shift+RightArrow)" class="next">User guides</a>
               </div>
           
         </div>
