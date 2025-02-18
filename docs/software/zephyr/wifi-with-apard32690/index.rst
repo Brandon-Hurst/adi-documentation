@@ -20,9 +20,11 @@ Core ESP32 Device:  ESP32-D0WDQ6-V3
 
 Pre-Built Firmware for ESP NINA-W102
 ------------------------------------
-ESP provides pre-built firmware for integrating Wifi and BLE through AT commands.  This can be found here: https://www.espressif.com/en/products/sdks/esp-at/overview. There is also a Zephyr driver for this firmware to make it look like generic Wifi here: https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/esp_at and a block talking about using the AT Firmware with Zephyr for a specific ESP32 module: https://blog.golioth.io/esp32-esp-at-enables-connectivity-on-any-zephyr-project/.
+ESP provides pre-built firmware for integrating Wifi and BLE through AT commands.  This can be found here: https://www.espressif.com/en/products/sdks/esp-at/overview. There is also a Zephyr driver for this firmware to make it look like generic Wifi here: https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/esp_at and a blog from Golioth talking about using the AT Firmware with Zephyr for a specific ESP32 module: https://blog.golioth.io/esp32-esp-at-enables-connectivity-on-any-zephyr-project/.
 
-However, the pre-built firmware is for ESP32 development boards which have a different pin out than the NINA-W102.  Instructions are provided (https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_set_AT_port_pin.html) describing how to change the port pins for the firmware image.
+However, the pre-built firmware is for ESP32 development boards which have a different pin out than the NINA-W102. Instructions are provided on Espressif's Wiki describing how to change the port pins for the firmware image:
+
+https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_set_AT_port_pin.html
 
 
 Building NINA-W102 Firmware
