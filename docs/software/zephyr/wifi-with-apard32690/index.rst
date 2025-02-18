@@ -127,6 +127,15 @@ apard_wifi.overlay
         };
     };
 
+    // Enable VDDIOH (3.3V) as the UART logic level
+    &uart2a_tx_p1_10 {
+        power-source = <MAX32_VSEL_VDDIOH>;
+    };
+
+    &uart2a_rx_p1_9 {
+        power-source = <MAX32_VSEL_VDDIOH>;
+    };
+
     / {
         aliases {
             wifi0 = &esp_wifi;
