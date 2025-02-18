@@ -486,6 +486,15 @@ Depending on the integrity of the cables (bad jumper wires, etc), you may be hav
 <span class="w">    </span><span class="p">};</span>
 <span class="p">};</span>
 
+<span class="c1">// Enable VDDIOH (3.3V) as the UART logic level</span>
+<span class="o">&amp;</span><span class="nf">uart2a_tx_p1_10</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">power-source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="na">MAX32_VSEL_VDDIOH</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="o">&amp;</span><span class="nf">uart2a_rx_p1_9</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">power-source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="na">MAX32_VSEL_VDDIOH</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
 <span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nf">aliases</span><span class="cm"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">wifi0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">esp_wifi</span><span class="p">;</span>
