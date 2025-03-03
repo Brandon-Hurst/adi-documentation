@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Help and Support for ADI FMC Cards &amp; RF SoMs &#8212; System Level Documentation  documentation</title>
+    <title>Networking Support - WiFi / T1L &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8e8a900e" />
     <link rel="stylesheet" type="text/css" href="../../_static/app.min.css?v=3d3703ae" />
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
@@ -15,6 +15,8 @@
     <link rel="icon" href="../../_static/icon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="User guides" href="../../eval/user-guide/index.html" />
+    <link rel="prev" title="PyADI-IIO" href="../pyadi-iio/index.html" />
    
   
   <meta name="repository" content="documentation">
@@ -86,16 +88,19 @@
         </div>
         <nav>
           <ul>
-<li><a class="reference internal" href="#">Help and Support for ADI FMC Cards &amp; RF SoMs</a><ul>
-<li><a class="reference internal" href="#hdl-hardware-questions">HDL / Hardware Questions</a></li>
-<li><a class="reference internal" href="#linux-driver-or-application-questions">Linux Driver or Application Questions</a></li>
-<li><a class="reference internal" href="#no-os-questions">No-OS Questions</a></li>
-<li><a class="reference internal" href="#general-ad9361-questions">General AD9361 Questions</a></li>
-<li><a class="reference internal" href="#ad9361-4-fir-filter-wizard">AD9361/4 FIR Filter Wizard</a></li>
-<li><a class="reference internal" href="#matlab-simulink-simrf-questions">MATLAB/Simulink/SimRF Questions</a></li>
-<li><a class="reference internal" href="#gnu-radio">GNU Radio</a></li>
-<li><a class="reference internal" href="#bugs-feature-requests">Bugs / Feature Requests</a></li>
-<li><a class="reference internal" href="#more-info">More info</a></li>
+<li><a class="reference internal" href="#">Networking Support - WiFi / T1L</a><ul>
+<li><a class="reference internal" href="#wifi">WiFi</a></li>
+<li><a class="reference internal" href="#pre-built-firmware-for-esp-nina-w102">Pre-Built Firmware for ESP NINA-W102</a></li>
+<li><a class="reference internal" href="#building-nina-w102-firmware">Building NINA-W102 Firmware</a></li>
+<li><a class="reference internal" href="#programming-the-nina-w102-on-ad-apard32690">Programming the NINA-W102 on AD-APARD32690</a></li>
+<li><a class="reference internal" href="#standalone-programming">Standalone Programming</a></li>
+<li><a class="reference internal" href="#at-command-verification">AT Command Verification</a></li>
+<li><a class="reference internal" href="#integrating-into-zephyr">Integrating Into Zephyr</a><ul>
+<li><a class="reference internal" href="#apard-wifi-overlay">apard_wifi.overlay</a></li>
+<li><a class="reference internal" href="#apard-wifi-conf">apard_wifi.conf</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
 </ul>
 </li>
 </ul>
@@ -166,35 +171,35 @@ Content on this topic
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Software</span></p>
-<ul>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4"/><div class="collapse"><a class="reference internal" href="../../software/iio-oscilloscope/index.html">IIO Oscilloscope</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1"/><div class="collapse"><a class="reference internal" href="../../software/iio-oscilloscope/adrv9009/index.html">ADRV9009</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/iio-oscilloscope/adrv9009/plugin.html">Standard Plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/iio-oscilloscope/adrv9009/advanced-plugin.html">Advanced plugin</a></li>
+<ul class="current">
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4"/><div class="collapse"><a class="reference internal" href="../iio-oscilloscope/index.html">IIO Oscilloscope</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1"/><div class="collapse"><a class="reference internal" href="../iio-oscilloscope/adrv9009/index.html">ADRV9009</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../iio-oscilloscope/adrv9009/plugin.html">Standard Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iio-oscilloscope/adrv9009/advanced-plugin.html">Advanced plugin</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5" id="toctree-collapse-5"/><div class="collapse"><a class="reference internal" href="../../software/libiio/index.html">Libiio</a><label for="toctree-collapse-5"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libiio/internals.html">About libiio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libiio/cli.html">Command line utility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libiio/tips-tricks.html">Tips &amp; Tricks</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5" id="toctree-collapse-5"/><div class="collapse"><a class="reference internal" href="../libiio/index.html">Libiio</a><label for="toctree-collapse-5"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libiio/internals.html">About libiio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libiio/cli.html">Command line utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libiio/tips-tricks.html">Tips &amp; Tricks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-6" id="toctree-collapse-6"/><div class="collapse"><a class="reference internal" href="../../software/libm2k/index.html">Libm2k</a><label for="toctree-collapse-6"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libm2k/calibration.html">Calibration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libm2k/digital_communication.html">Digital communication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/libm2k/m2kcli.html">Command line utility</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-6" id="toctree-collapse-6"/><div class="collapse"><a class="reference internal" href="../libm2k/index.html">Libm2k</a><label for="toctree-collapse-6"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libm2k/calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libm2k/digital_communication.html">Digital communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libm2k/m2kcli.html">Command line utility</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-7" id="toctree-collapse-7"/><div class="collapse"><a class="reference internal" href="../../software/matlab/index.html">MATLAB &amp; Simulink Toolboxes</a><label for="toctree-collapse-7"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../software/matlab/hsx-toolbox/index.html">High Speed Converter Toolbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/matlab/transceiver-toolbox/index.html">Transceiver Toolbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../software/matlab/bsp-extend.html">Extending Device Interfaces</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-7" id="toctree-collapse-7"/><div class="collapse"><a class="reference internal" href="../matlab/index.html">MATLAB &amp; Simulink Toolboxes</a><label for="toctree-collapse-7"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/hsx-toolbox/index.html">High Speed Converter Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/transceiver-toolbox/index.html">Transceiver Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/bsp-extend.html">Extending Device Interfaces</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../software/pyadi-iio/index.html">PyADI-IIO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../software/zephyr-wifi-with-apard32690/index.html">Networking Support - WiFi / T1L</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyadi-iio/index.html">PyADI-IIO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Networking Support - WiFi / T1L</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Evaluation Boards</span></p>
 <ul>
@@ -362,137 +367,214 @@ Content on this topic
         <div class="bodywrapper" id="top-anchor">
           <div class="body" role="main">
             
-  <section id="help-and-support-for-adi-fmc-cards-rf-soms">
-<span id="ad-fmcomms2-ebz-help-and-support"></span><h1>Help and Support for ADI FMC Cards &amp; RF SoMs<a class="headerlink" href="#help-and-support-for-adi-fmc-cards-rf-soms" title="Link to this heading"></a></h1>
-<p>If you have any questions regarding the:</p>
-<ul class="simple">
-<li><p>ADI FMC Boards : AD-FMCOMMS2-EBZ, AD-FMCOMMS3-EBZ, AD-FMCOMMS4-EBZ,
-AD-FMCOMMS5-EBZ AD-FMCOMMS11-EBZ</p></li>
-<li><p>Arrow ARRADIO board or</p></li>
-<li><p>ADI RF SoM (ADRV9364-Z7020, ADRV9361-Z7035 or ADRV9009-ZU11EG)</p></li>
+  <section id="networking-support-wifi-t1l">
+<h1>Networking Support - WiFi / T1L<a class="headerlink" href="#networking-support-wifi-t1l" title="Link to this heading"></a></h1>
+<p>The following document describes how to build and flash firmware for boards with the NINA-W102 WiFi module. As an example, it will use the <a class="icon adi reference external" href="https://www.analog.com/AD-APARD32690-SL">MAX32690 Arduino Form-Factor Board</a>.
+It will also describe how to build and  flash the Zephyr Wifi sample to work with this board once the NINA-W102 has been flashed.</p>
+<p>Some familiarity with Zephyr and building / flashing Zephyr applications is assumed. If you are new to Zephyr, please start with the Getting Started Guide:
+<a class="reference external" href="https://docs.zephyrproject.org/latest/develop/getting_started/index.html">https://docs.zephyrproject.org/latest/develop/getting_started/index.html</a></p>
+<section id="wifi">
+<h2>WiFi<a class="headerlink" href="#wifi" title="Link to this heading"></a></h2>
+<p>The wifi chip on the AD-APARD32690 is a uBlox NINA-W102 “Open CPU” Wifi/Bluetooth module.  The modules is based on an ESP32 chip, with “Open CPU” meaning it does NOT come preloaded with firmware from uBlox, but rather is intended for customers to develop their own firmware to run on it.</p>
+<p>Details of the chip: <a class="reference external" href="https://www.u-blox.com/en/product/nina-w10-series-open-cpu">https://www.u-blox.com/en/product/nina-w10-series-open-cpu</a></p>
+<p>Software must be developed using the ESP32 SDK: <a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html</a></p>
+<p>Core ESP32 Device:  ESP32-D0WDQ6-V3</p>
+</section>
+<section id="pre-built-firmware-for-esp-nina-w102">
+<h2>Pre-Built Firmware for ESP NINA-W102<a class="headerlink" href="#pre-built-firmware-for-esp-nina-w102" title="Link to this heading"></a></h2>
+<p>ESP provides pre-built firmware for integrating Wifi and BLE through AT commands.  This can be found here: <a class="reference external" href="https://www.espressif.com/en/products/sdks/esp-at/overview">https://www.espressif.com/en/products/sdks/esp-at/overview</a>. There is also a Zephyr driver for this firmware to make it look like generic Wifi here: <a class="reference external" href="https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/esp_at">https://github.com/zephyrproject-rtos/zephyr/tree/main/drivers/wifi/esp_at</a> and a block talking about using the AT Firmware with Zephyr for a specific ESP32 module: <a class="reference external" href="https://blog.golioth.io/esp32-esp-at-enables-connectivity-on-any-zephyr-project/">https://blog.golioth.io/esp32-esp-at-enables-connectivity-on-any-zephyr-project/</a>.</p>
+<p>However, the pre-built firmware is for ESP32 development boards which have a different pin out than the NINA-W102.  Instructions are provided (<a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_set_AT_port_pin.html">https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_set_AT_port_pin.html</a>) describing how to change the port pins for the firmware image.</p>
+</section>
+<section id="building-nina-w102-firmware">
+<h2>Building NINA-W102 Firmware<a class="headerlink" href="#building-nina-w102-firmware" title="Link to this heading"></a></h2>
+<p>Before proceeding, ensure that P50 and P55 on the APARD32690 board are in position 1-2 if you are trying to get the NINA-W102 UART data through the SWD connector. Be sure to switch this back later for testing the Zephyr application.</p>
+<p>The following instructions mostly come from this document:
+<a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_clone_project_and_compile_it.html">https://docs.espressif.com/projects/esp-at/en/latest/esp32/Compile_and_Develop/How_to_clone_project_and_compile_it.html</a></p>
+<p>Install the ESP SDK: <a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html</a></p>
+<p>Open the ESP-IDF Command Prompt and run the following steps:</p>
+<ol class="arabic simple">
+<li><p>Get the project: git clone –recursive <a class="reference external" href="https://github.com/espressif/esp-at.git">https://github.com/espressif/esp-at.git</a></p></li>
+<li><dl class="simple">
+<dt>Run the builder:  python build.py install</dt><dd><ul class="simple">
+<li><p>Select PLATFORM_ESP32</p></li>
+<li><p>Select module ESP32-D2WD as it has the same flash size as the NINA-W102, making it easier to configure</p></li>
+<li><p>When asked about silent mode, select Y.  Otherwise, if silent mode is not enable, you’ll need to set the compiler options later to Optimize for Size to get it to fit</p></li>
 </ul>
-<p>or are experiencing any problems while using the board or following the user
-guides feel free to ask us a question.
-Questions can be asked on our <a class="icon ez reference external" href="https://ez.analog.com/">EngineerZone</a> support community.
-Calling on the phone, emailing someone directly, will only cause things to get
-answered in much slower manner.</p>
-<p>Why EngineerZone? Why can’t I get one-on-one email/phone support on the AD9361?
-The AD9361 is a very complex part - it has over one thousand (1000) different
-registers with little way to understand (other than experience, and staring at
-things a long time) what is going on inside the part. The working system
-crosses many domains (RF, FIR Filter Design, driver software, HDL, user
-applications). One single person can’t understand the entire thing, so a single
-email, which is forwarded around to multiple places actually takes longer to
-get questions answered (and has a higher chance of getting lost), than posting
-them on EngineerZone (Where things are tracked, and closed). Having experts in
-the field monitor the EngineerZone is a better use of everyone’s time, and
-questions are actually answered faster for those asking. Please use it.</p>
-<p>When asking a question please take the time to give a detailed description of
-your problem. Always include on which carrier platform (ZC706? ZC702? Zed,
-SocKit, FMC carrier, breakout (for SoMs). etc) you are currently using the
-card. If you are experiencing a problem please state the steps you have
-executed, the result you expected you would get and the result you actually
-got. By doing so you enable us to provide you precise and detailed answers in a
-timely manner.</p>
-<p>Before asking questions please also take the time to check if somebody else
-already asked the same question and already got an answer. Please make sure you
-ask in these forums. EngineerZone is a big place, with lots of places to post
-questions, and it’s possible to ask a question in the wrong place, where no one
-familiar with these boards/parts/software monitors things, and it will go
-unanswered forever. Don’t get mad if this happens. The problem is between the
-chair and the keyboard (you). If you are posting in the right place, and the
-question is unanswered for a few working days, please bump the thread (we are
-human, and sometimes miss things).</p>
-<section id="hdl-hardware-questions">
-<h2>HDL / Hardware Questions<a class="headerlink" href="#hdl-hardware-questions" title="Link to this heading"></a></h2>
-<p>For questions regarding the AD-FMCOMMS2-EBZ, AD-FMCOMMS3-EBZ or AD-FMCOMMS4-EBZ
-hardware or the HDL reference design please state them in the
-<a class="icon ez reference external" href="https://ez.analog.com/fpga">FPGA Reference Designs</a> sub-community.
-If you have questions about the tools, please go ask the tools vendors:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://support.xilinx.com/s">AMD Xilinx Forums</a></p></li>
-<li><p><a class="reference external" href="https://community.intel.com/t5/FPGA/ct-p/fpga">Intel Altera Forums</a></p></li>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Edit the components/customized_partitions/raw_data/factory_param_data.csv file so the D2WD line reads the following:</dt><dd><ul class="simple">
+<li><p>PLATFORM_ESP32,ESP32-D2WD,”2MB flash, No OTA”,4,78,0,1,13,CN,115200,1,3,-1,-1</p></li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><p>Build the project by running python build.py build</p></li>
+<li><p>The complete firmware image is located in buildfactoryfactory_ESP32-&lt;device&gt;.bin and can be archived for later loading of devices.</p></li>
+</ol>
 </section>
-<section id="linux-driver-or-application-questions">
-<h2>Linux Driver or Application Questions<a class="headerlink" href="#linux-driver-or-application-questions" title="Link to this heading"></a></h2>
-<p>For questions regarding the the ADI Linux distribution (which is based
-<a class="reference external" href="https://www.linaro.org/">Linaro</a> with <a class="reference external" href="https://www.xfce.org/">Xfce</a> desktop),
-the Linux drivers, or the device trees for the AD9361 or
-AD9364 based platforms, please use the
-<a class="icon ez reference external" href="https://ez.analog.com/linux-software-drivers">Linux Software Drivers</a> sub-community.</p>
-<p>If you have generic userspace questions (how do I use a standard linux tool),
-we should suggest to use your favorite <a class="reference external" href="https://google.com">search tool</a> to find
-that  tool/utility/application support method (some use email, some use web).
-If you think you have found a bug specific to ARM, please report this upstream.</p>
+<section id="programming-the-nina-w102-on-ad-apard32690">
+<h2>Programming the NINA-W102 on AD-APARD32690<a class="headerlink" href="#programming-the-nina-w102-on-ad-apard32690" title="Link to this heading"></a></h2>
+<p>A USB-UART adapter will be needed. A good one can be found here if needed:
+<a class="reference external" href="https://ftdichip.com/products/ttl-232r-3v3/">https://ftdichip.com/products/ttl-232r-3v3/</a></p>
+<ol class="arabic">
+<li><p>Connect a USB-UART adapter to the NINA-W102 through P38-2 and P56-2, and a ground on P2 or P5</p></li>
+<li><p>Prior to powering up the board, pull the ESP32 SYS_BOOT pin low, but connecting P47 to ground</p></li>
+<li><p>Power up the board.  You can verify the bootloader started correctly by observing the USB-UART adapter in a terminal.  There should be text similar to the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rst:0x1 (POWERON_RESET),boot:0x23 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+</pre></div>
+</div>
+</li>
+</ol>
+<p>4. From the ESP command line, run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">build.py</span> <span class="pre">-p</span> <span class="pre">&lt;COMPORT&gt;</span> <span class="pre">flash</span></code>. The flash operation should be performed
+Depending on the integrity of the cables (bad jumper wires, etc), you may be have to add the -b 115200 forced slower baud rate for data integrity.</p>
 </section>
-<section id="no-os-questions">
-<h2>No-OS Questions<a class="headerlink" href="#no-os-questions" title="Link to this heading"></a></h2>
-<p>For questions regarding the no-OS drivers for AD9361 or AD9364, please use the
-<a class="icon ez reference external" href="https://ez.analog.com/linux-software-drivers">Linux Software Drivers</a>
-sub-community.</p>
+<section id="standalone-programming">
+<h2>Standalone Programming<a class="headerlink" href="#standalone-programming" title="Link to this heading"></a></h2>
+<p>The NINA-W102 device may be flashed using the stand alone ESP Flash download tool without needing to install the full SDK.</p>
+<p>Follow the instructions in the previous section up through step 3, then consult the ESP-AT Downloading guide for using the Flash Download Tool on Windows. Selecting the combined factory firmware image, as described above.
+<a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/Get_Started/Downloading_guide.html#flash-at-firmware-into-your-device">https://docs.espressif.com/projects/esp-at/en/latest/esp32/Get_Started/Downloading_guide.html#flash-at-firmware-into-your-device</a></p>
 </section>
-<section id="general-ad9361-questions">
-<h2>General AD9361 Questions<a class="headerlink" href="#general-ad9361-questions" title="Link to this heading"></a></h2>
-<p>Questions about the AD9361 or AD9364, please use the
-<a class="icon ez reference external" href="https://ez.analog.com/wide-band-rf-transceivers/design-support">AD9361</a> sub-community.</p>
-<p>Detailed documentation on the AD9361 device can be found at:
-<a class="icon adi reference external" href="https://www.analog.com/en/rfif-components/rfif-transceivers/products/AD9361-Integrated-RF-Agile-Transceiver-Design-Res/fca.html">AD9361 Design support package</a></p>
+<section id="at-command-verification">
+<h2>AT Command Verification<a class="headerlink" href="#at-command-verification" title="Link to this heading"></a></h2>
+<p>The AT command set can be found here: <a class="reference external" href="https://docs.espressif.com/projects/esp-at/en/latest/esp32/AT_Command_Set/index.html">https://docs.espressif.com/projects/esp-at/en/latest/esp32/AT_Command_Set/index.html</a>.  Some basic AT commands can be done to verify the part is programmed correctly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">GMR</span>
+<span class="n">AT</span> <span class="n">version</span><span class="p">:</span><span class="mf">4.1.0.0</span><span class="o">-</span><span class="n">dev</span><span class="p">(</span><span class="n">eb730f6</span> <span class="o">-</span> <span class="n">ESP32</span> <span class="o">-</span> <span class="n">Jan</span>  <span class="mi">3</span> <span class="mi">2024</span> <span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">)</span>
+<span class="n">SDK</span> <span class="n">version</span><span class="p">:</span><span class="n">v5</span><span class="mf">.0.4</span><span class="o">-</span><span class="n">dirty</span>
+<span class="nb">compile</span> <span class="n">time</span><span class="p">(</span><span class="mi">899230</span><span class="n">b2</span><span class="p">):</span><span class="n">Jan</span> <span class="mi">14</span> <span class="mi">2024</span> <span class="mi">17</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">03</span>
+<span class="n">Bin</span> <span class="n">version</span><span class="p">:</span><span class="n">v3</span><span class="mf">.2.0.0</span><span class="p">(</span><span class="n">ESP32</span><span class="o">-</span><span class="n">D2WD</span><span class="p">)</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CWINIT</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CWMODE</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">OK</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CWLAP</span>
+<span class="o">+</span><span class="n">CWLAP</span><span class="p">:(</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;MySSID&quot;</span><span class="p">,</span><span class="o">-</span><span class="mi">74</span><span class="p">,</span><span class="s2">&quot;94:a6:7e:e3:b8:38&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Finished code block</p>
 </section>
-<section id="ad9361-4-fir-filter-wizard">
-<h2>AD9361/4 FIR Filter Wizard<a class="headerlink" href="#ad9361-4-fir-filter-wizard" title="Link to this heading"></a></h2>
-<p>Questions about the
-<a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/ad-fmcomms2-ebz/software/filters">AD936x FIR Filter Wizard</a>
-can be asked on
-<a class="icon ez reference external" href="https://ez.analog.com/linux-software-drivers">Linux Software Drivers</a> sub-community.</p>
+<section id="integrating-into-zephyr">
+<h2>Integrating Into Zephyr<a class="headerlink" href="#integrating-into-zephyr" title="Link to this heading"></a></h2>
+<p>Create files in your Zephyr workspace called <cite>apard_wifi.conf</cite> and <cite>apard_wifi.overlay</cite>.</p>
+<p>Next, place the text below in these files:</p>
+<section id="apard-wifi-overlay">
+<h3>apard_wifi.overlay<a class="headerlink" href="#apard-wifi-overlay" title="Link to this heading"></a></h3>
+<div class="highlight-dts notranslate" id="id1"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="na">uart2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pinctrl-0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&amp;</span><span class="na">uart2a_tx_p1_10</span><span class="w"> </span><span class="o">&amp;</span><span class="na">uart2a_rx_p1_9</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pinctrl-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;default&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">current-speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">115200</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="kr">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;okay&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nl">esp_wifi</span><span class="p">:</span><span class="w"> </span><span class="nf">esp-wifi</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;espressif,esp-at&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kr">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;okay&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">aliases</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wifi0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">esp_wifi</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
 </section>
-<section id="matlab-simulink-simrf-questions">
-<h2>MATLAB/Simulink/SimRF Questions<a class="headerlink" href="#matlab-simulink-simrf-questions" title="Link to this heading"></a></h2>
-<p>Questions about the MathWorks provided AD9361 simRF model, or the FMCOMMS2/3/4/5
-Hardware support package can be asked either:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.mathworks.com/products/connections/product_detail/adi-rf-transceivers.html">MathWorks information page</a></p></li>
-<li><p><a class="reference external" href="https://www.mathworks.com/hardware-support/request-hardware-support.html">MathWorks Hardware Support</a></p></li>
-</ul>
-<p>Questions about the Analog Devices provided Filter Wizard, or streaming system object,
-or Board Support Package can be asked:</p>
-<ul class="simple">
-<li><p><a class="icon ez reference external" href="https://ez.analog.com/sw-interface-tools">MATLAB/Simulink support</a></p></li>
-</ul>
+<section id="apard-wifi-conf">
+<h3>apard_wifi.conf<a class="headerlink" href="#apard-wifi-conf" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate" id="id2"><div class="highlight"><pre><span></span># Enable WiFi via ESP-AT
+CONFIG_WIFI=y
+CONFIG_WIFI_ESP_AT=y
+CONFIG_WIFI_ESP_AT_MDM_RX_BUF_COUNT=40
+
+# Disable NET_L2_ETHERNET to avoid T1L PHY errors
+# when not using T1L, but enabling net-if
+CONFIG_NET_L2_ETHERNET=n
+
+# Increment max IPV4 count if using multiple net-if interfaces
+CONFIG_NET_IF_MAX_IPV4_COUNT=2
+</pre></div>
+</div>
+<p>Build your application as below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>west<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>auto<span class="w"> </span>-b<span class="w"> </span>apard32690//m4<span class="w"> </span>zephyr/samples/net/wifi/shell<span class="w"> </span>--<span class="w"> </span>-DDTC_OVERLAY_FILE<span class="o">=</span><span class="nv">$PWD</span>/apard_wifi.overlay<span class="w"> </span>-DEXTRA_CONF_FILE<span class="o">=</span><span class="nv">$PWD</span>/apard_wifi.conf
+</pre></div>
+</div>
+<p>Flash the application using a Segger JLink as below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>west<span class="w"> </span>flash<span class="w"> </span>-r<span class="w"> </span>jlink
+</pre></div>
+</div>
+<p>At this point, make sure that P55 and P50 on the APARD32690 board are in positions 2-3 to get UART data from the MAX32690.</p>
 </section>
-<section id="gnu-radio">
-<h2>GNU Radio<a class="headerlink" href="#gnu-radio" title="Link to this heading"></a></h2>
-<p>Questions about using the FMCOMMSx boards and GNU Radio either on a host or on
-the ARM target, can be asked on <a class="icon ez reference external" href="https://ez.analog.com/sw-interface-tools">Software Interface Tools</a>
-sub-community.
-Generic questions about GNU Radio should be asked on their
-<a class="reference external" href="https://wiki.gnuradio.org/index.php/MailingLists">mailing list</a>.</p>
 </section>
-<section id="bugs-feature-requests">
-<h2>Bugs / Feature Requests<a class="headerlink" href="#bugs-feature-requests" title="Link to this heading"></a></h2>
-<p>If you think you have a bug to report, the best place to to this is the <a class="icon ez reference external" href="https://ez.analog.com/">EngineerZone</a>.
-This way we can discuss if the bug is a bug, or a feature request, or just missing
-documentation.</p>
-<p>If you think you have a real bug, where you have developed a real fix (first - thanks),
-feel free to:</p>
-<ul class="simple">
-<li><p>Post something on EngineerZone.</p></li>
-<li><p>Post something on the GitHub issue tracker.</p></li>
-<li><p>Fork the GitHub repository, and fix it, and then send a pull request.</p></li>
-</ul>
-<p>Either is OK with us.</p>
-</section>
-<section id="more-info">
-<h2>More info<a class="headerlink" href="#more-info" title="Link to this heading"></a></h2>
-<p>For more information also check:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://www.vita.com/fmc">VITA’s FMC info</a></p></li>
-<li><p><a class="icon adi reference external" href="https://www.analog.com/AD-FMCOMMS2-EBZ">AD-FMCOMMS2-EBZ</a></p></li>
-<li><p><a class="icon adi reference external" href="https://www.analog.com/AD-FMCOMMS3-EBZ">AD-FMCOMMS3-EBZ</a></p></li>
-<li><p><a class="icon adi reference external" href="https://www.analog.com/AD-FMCOMMS4-EBZ">AD-FMCOMMS4-EBZ</a></p></li>
-<li><p><a class="icon adi reference external" href="https://www.analog.com/AD-FMCOMMS5-EBZ">AD-FMCOMMS5-EBZ</a></p></li>
-<li><p><a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/arradio">Arradio</a></p></li>
-</ul>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>At this point, make sure that P55 and P50 on the APARD32690 board are in positions 2-3 to get UART data from the MAX32690. Connect to a terminal application with 115200 baud, 8-N-1 UART settings. Make sure that P56 and P38 are also connected.
+The Zephyr Wifi sample application comes with a Wifi shell for doing basic Wifi interactions.  After launching the scan, and connect commands were used to successfully connect to an AP via the Zephyr network subsystem.</p>
+<p>Verify the devices installed with <cite>device list</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*** Booting Zephyr OS build zephyr-v3.5.0-4086-g0a8d03b95f84 ***
+uart:~$ device list
+devices:
+- rcc@40021000 (READY)
+- reset-controller (READY)
+- interrupt-controller@40010400 (READY)
+- gpio@48001800 (READY)
+- gpio@48001400 (READY)
+- gpio@48001000 (READY)
+- gpio@48000c00 (READY)
+- gpio@48000800 (READY)
+- gpio@48000400 (READY)
+- gpio@48000000 (READY)
+- rng@50060800 (READY)
+- serial@40008000 (READY)
+- serial@40013800 (READY)
+- esp-wifi (READY)
+uart:~$
+</pre></div>
+</div>
+<p>Request a wifi scan with wifi scan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>uart:~$ wifi scan
+Scan requested
+
+Num  | SSID                             (len) | Chan (Band)   | RSSI | Security        | BSSID             | MFP
+1    | MySSID                           9     | 10   (2.4GHz) | -70  | WPA2-PSK        |                   | Disable
+Scan request done
+</pre></div>
+</div>
+<p>Connect to a Wifi Access Point with <cite>wifi connect</cite>.  Note PSK was omitted in the following terminal log:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>uart:~$ wifi connect &quot;MySSID&quot; 1 ****PSK HERE****
+Connection requested
+Connected
+</pre></div>
+</div>
+<p>Get status information with <cite>wifi status</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>uart:~$ wifi status
+Status: successful
+==================
+State: COMPLETED
+Interface Mode: STATION
+Link Mode: UNKNOWN
+SSID: MySSID
+BSSID: &lt;__:__:__:__:__:__&gt;
+Band: 2.4GHz
+Channel: 10
+Security: UNKNOWN
+MFP: UNKNOWN
+RSSI: -69
+Beacon Interval: 0
+DTIM: 0
+TWT: Not supported
+uart:~$
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -500,8 +582,8 @@ feel free to:</p>
           </div>
               <div class="related">
                 &nbsp;
-    <div></div>
-    <div></div>
+    <a href="../pyadi-iio/index.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">PyADI-IIO</a>
+    <a href="../../eval/user-guide/index.html" title="Next document (Alt+Shift+RightArrow)" class="next">User guides</a>
               </div>
           
         </div>
