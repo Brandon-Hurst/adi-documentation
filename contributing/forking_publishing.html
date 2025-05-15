@@ -7,11 +7,8 @@
 
     <title>Forking and publishing &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8e8a900e" />
-    <link rel="stylesheet" type="text/css" href="../_static/app.min.css?v=3d3703ae" />
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script defer="" src="../_static/app.umd.js?v=dcfbb431"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/app.min.css?v=47649d88" />
+    <script defer="" src="../_static/app.umd.js?v=9e881883"></script>
     <link rel="icon" href="../_static/icon.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,8 +44,7 @@
   <div class="search-area">
     <form action="" method="get">
       <input type="text" name="q" aria-labelledby="search-documentation" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="search" placeholder="Search"/>
-      <button value="search" class="icon"></button>
-      <span id="search-progress"></span>
+      <button class="icon"></button>
     </form>
   </div>
   
@@ -102,7 +98,12 @@
 <li><a class="reference internal" href="#adding-content">Adding content</a></li>
 <li><a class="reference internal" href="#pushing-and-triggering-the-ci">Pushing and triggering the CI</a></li>
 <li><a class="reference internal" href="#resuming-work-at-a-later-time">Resuming work at a later time</a></li>
-<li><a class="reference internal" href="#understanding-git-lfs">Understanding git lfs</a></li>
+<li><a class="reference internal" href="#conquer-git-lfs">Conquer git LFS</a><ul>
+<li><a class="reference internal" href="#files-that-should-have-been-pointers">Files that should have been pointers</a></li>
+<li><a class="reference internal" href="#checking-out-branches-and-commits">Checking out branches and commits</a></li>
+<li><a class="reference internal" href="#pull-request-permission">Pull request permission</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -136,6 +137,7 @@ Content on this topic
 <li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1" id="toctree-collapse-1"/><div class="collapse"><a class="reference internal" href="../linux/drivers/index.html">Linux drivers</a><label for="toctree-collapse-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1-1" id="toctree-collapse-1-1"/><div class="collapse"><a class="reference internal" href="../linux/drivers/iio-adc/index.html">IIO ADC</a><label for="toctree-collapse-1-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux/drivers/iio-adc/ad4052/index.html">AD4052</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/drivers/iio-adc/ad9084/index.html">AD9084/AD9088</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1-2" id="toctree-collapse-1-2"/><div class="collapse"><a class="reference internal" href="../linux/drivers/iio-transceiver/index.html">IIO Transceivers</a><label for="toctree-collapse-1-2"><div class="icon"></div></label></div><ul>
@@ -210,6 +212,7 @@ Content on this topic
 <li class="toctree-l3"><a class="reference internal" href="../eval/user-guide/adc/ad4052-ardz/user-guide.html">Evaluating the device</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../eval/user-guide/adc/ad9084-ebz/index.html">EVAL-AD9084-EBZ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../eval/user-guide/mem/adxl355-pmdz/index.html">EVAL-ADXL355-PMDZ</a></li>
 <li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-2" id="toctree-collapse-8-2"/><div class="collapse"><a class="reference internal" href="../eval/user-guide/transceiver/adrv9009/index.html">ADRV9009 &amp; ADRV9008</a><label for="toctree-collapse-8-2"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><a class="reference internal" href="../eval/user-guide/transceiver/adrv9009/prerequisites.html">Prerequisites</a></li>
@@ -279,6 +282,7 @@ Content on this topic
 <li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-12" id="toctree-collapse-12"/><div class="collapse"><a class="reference internal" href="../solutions/reference-designs/index.html">Reference Designs</a><label for="toctree-collapse-12"><div class="icon"></div></label></div><ul>
 <li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-12-1" id="toctree-collapse-12-1"/><div class="collapse"><a class="reference internal" href="../solutions/reference-designs/ad-apard32690-sl/index.html">AD-APARD32690-SL</a><label for="toctree-collapse-12-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/ad-apard32690-sl/ad-t1lusb-ebz/index.html">AD-T1LUSB2.0-EBZ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/ad-apard32690-sl/nina-w102/index.html">NINA-W102 Networking Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-12-2" id="toctree-collapse-12-2"/><div class="collapse"><a class="reference internal" href="../solutions/reference-designs/ad-bmse2e3w-sl/index.html">AD-BMSE2E3W-SL</a><label for="toctree-collapse-12-2"><div class="icon"></div></label></div><ul>
@@ -310,9 +314,19 @@ Content on this topic
 <li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/ad-swiot1l-sl/software-guide/index.html">Software User Guide</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-12-7" id="toctree-collapse-12-7"/><div class="collapse"><a class="reference internal" href="../solutions/reference-designs/eval-cn0503-ardz/index.html">EVAL-CN0503-ARDZ</a><label for="toctree-collapse-12-7"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-cn0503-ardz/cn0503-software/index.html">Software User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-cn0503-ardz/fluorescence-measurement/index.html">Fluorescence Measurement Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-cn0503-ardz/nitrate-measurement/index.html">Nitrate Measurement Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-cn0503-ardz/pH-measurement/index.html">pH Measurement Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-cn0503-ardz/turbidity/index.html">Turbidity Measurement Demo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/reference-designs/eval-cn0565-ardz/index.html">EVAL-CN0565-ARDZ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../solutions/reference-designs/eval-cn0575-rpiz/index.html">EVAL-CN0575-RPIZ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../solutions/reference-designs/eval-cn0577-fmcz/index.html">EVAL-CN0577-FMCZ</a></li>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-12-7" id="toctree-collapse-12-7"/><div class="collapse"><a class="reference internal" href="../solutions/reference-designs/eval-isomax/index.html">EVAL-ISOMAX</a><label for="toctree-collapse-12-7"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/reference-designs/eval-ess1-sys/index.html">EVAL-ESS1-SYS</a></li>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-12-8" id="toctree-collapse-12-8"/><div class="collapse"><a class="reference internal" href="../solutions/reference-designs/eval-isomax/index.html">EVAL-ISOMAX</a><label for="toctree-collapse-12-8"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-isomax/hardware_guide/index.html">Hardware User Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../solutions/reference-designs/eval-isomax/software_guide/index.html">Software User Guide</a></li>
 </ul>
@@ -336,7 +350,7 @@ Content on this topic
 <li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-14" id="toctree-collapse-14"/><div class="collapse"><a class="reference internal" href="../learning/index.html">Learning! Tutorials, Workshops, Etc</a><label for="toctree-collapse-14"><div class="icon"></div></label></div><ul>
 <li class="toctree-l2"><a class="reference internal" href="../learning/tutorial_prec_adc/index.html">Precision ADC Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../learning/converter_connectivity_tutorial/index.html">Converter Connectivity Tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../learning/sw_infrastructure/index.html">Key ADI’s Software Infrastructure for designing with ADCs, DACs, and Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learning/sw_infrastructure/index.html">Software Infrastructure for designing with ADCs, DACs, and Sensors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../learning/tools_for_ls/index.html">Tools for Low Speed Mixed Signal System Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../learning/tools_for_prec_wb/index.html">Tools for Precision Wideband Mixed Signal System Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../learning/tools_for_hs/index.html">Tools for High-Speed Mixed Signal System Design</a></li>
@@ -367,6 +381,7 @@ Content on this topic
   <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper" id="top-anchor">
+          
           <div class="body" role="main">
             
   <section id="forking-and-publishing">
@@ -375,7 +390,8 @@ Content on this topic
 <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/">this</a> repository,
 It ensures that GitHub Actions and GitHub Pages are enabled, so you can run
 continuous integration and see the pages live at <em>&lt;your_user&gt;.github.io/documentation</em>,
-and <a class="reference external" href="https://git-lfs.com/">git-lfs</a> artifacts are properly synced.</p>
+and <a class="reference external" href="https://git-lfs.com/">git-lfs</a> artifacts are properly synced.
+To learn about git LFS and use it as a pro, read <a class="reference internal" href="#git-lfs"><span class="std std-ref">Conquer git LFS</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Using the Python virtual environment (venv) is recommended, but if you wish
@@ -591,9 +607,9 @@ clone and build the doc for the first time (working directory: repo root):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span><span class="nb">cd</span><span class="w"> </span>docs<span class="w"> </span><span class="p">;</span><span class="w"> </span>adoc<span class="w"> </span>serve<span class="o">)</span>
 </pre></div>
 </div>
-<div class="clear-left"></div></div></div><p>The server will fetch on demand the git lfs resource (smudge step) from the
+<div class="clear-left"></div></div></div><p>The server will fetch on demand the git LFS resource (smudge step) from the
 pages you visit on the local server, and watched files you touch.</p>
-<p>Alternatively, you can build it once calling Sphinx directly, but if the git lfs
+<p>Alternatively, you can build it once calling Sphinx directly, but if the git LFS
 smudge step was skipped, the images and other binary files will be missing.</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
 </pre></div>
@@ -695,25 +711,110 @@ configure GitHub Pages at <em>github.com/&lt;your_user&gt;/documentation/setting
 </div>
 <div class="clear-left"></div></div></div><p>Edit, build, commit, push as usual.</p>
 </section>
-<section id="understanding-git-lfs">
-<h2>Understanding git lfs<a class="headerlink" href="#understanding-git-lfs" title="Link to this heading"></a></h2>
-<p>Since git lfs is not that common in the wild, it may be tricky to get the hang
+<section id="conquer-git-lfs">
+<span id="git-lfs"></span><h2>Conquer git LFS<a class="headerlink" href="#conquer-git-lfs" title="Link to this heading"></a></h2>
+<p>Since git LFS is not that common in the wild, it may be tricky to get the hang
 of it.</p>
 <p>First of all, the basics:
-lfs replaces binaries files with pointers, and stores the binaries outside the
+Git LFS replaces binaries files with pointers, and stores the binaries outside the
 git repository, in an external server.</p>
-<p>When you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone/pull</span></code>, by default lfs will also download the binaries
+<p>When you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone/pull</span></code>, by default LFS will also download the binaries
 at the “smudge” step.
-But instead, we recommend to change this behaviour by setting globally
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span> <span class="pre">--skip-smudge</span></code> or temporally with <code class="docutils literal notranslate"><span class="pre">GIT_LFS_SKIP_SMUDGE=1</span></code>
-environment variable and then fetch the artifacts on demand, either by the
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">pull</span> <span class="pre">public</span> <span class="pre">-I</span> <span class="pre">file_basename</span></code> or letting <a class="reference external" href="https://analogdevicesinc.github.io/doctools/cli.html#serve" title="(in Doctools vmain)"><span>Serve</span></a> handle it.
-This method on-demand saves a lot of bandwidth and time.</p>
-<p>If during a clone or pull you obtain the error:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Encountered</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">file</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">that</span> <span class="n">should</span> <span class="n">have</span> <span class="n">been</span> <span class="n">pointers</span>
+But we <strong>highly</strong> recommend to change this behaviour to fetch the artifacts on
+demand by setting globally <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span> <span class="pre">--skip-smudge</span></code>.
+It is recommended because it saves a lot of bandwidth and (your precious) time.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><code class="docutils literal notranslate"><span class="pre">GIT_LFS_SKIP_SMUDGE=1</span></code> and <code class="docutils literal notranslate"><span class="pre">--skip-smudge</span></code> are not the identical!</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
 </pre></div>
 </div>
-<p>That simply means that someone pushed files to remote that should have been
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Still fetches with either set.</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>pull<span class="w"> </span>-I<span class="w"> </span>pointer_file
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Only still fetches with --skip-smudge, skipped with GIT_LFS_SKIP_SMUDGE=1</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>smudge<span class="w"> </span>&lt;<span class="w"> </span>pointer_file<span class="w"> </span>&gt;<span class="w"> </span>/tmp/file.png<span class="sb">``</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div></div>
+<p>In this configuration, you can fetch the artifact:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>pull<span class="w"> </span>-I<span class="w"> </span>path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking size</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span>path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 me me 34162787 Mar 25 11:09 path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>And revert to it’s pointer state:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>path/to/my_file.png<span class="w"> </span><span class="p">;</span><span class="w"> </span>git<span class="w"> </span>restore<span class="w"> </span>--<span class="w"> </span><span class="nv">$_</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking pointer</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>version https://git-lfs.github.com/spec/v1
+oid sha256:837ad06a63c0b1c10a02615601f73b7b7596746a62064fe35bb8a4d1543f04a2
+size 34162787
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>For documentation, you don’t need to do it manually, <a class="reference external" href="https://analogdevicesinc.github.io/doctools/cli.html#serve" title="(in Doctools vmain)"><span>Serve</span></a>
+will automatically fetch lfs artifacts of watched touched files and visited pages
+on the live server.</p>
+<p>In the following subsections are common issues and on what to do in each situation.</p>
+<section id="files-that-should-have-been-pointers">
+<span id="files-pointers"></span><h3>Files that should have been pointers<a class="headerlink" href="#files-that-should-have-been-pointers" title="Link to this heading"></a></h3>
+<p>Git lfs simply follows the rules on the <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/.gitattributes">.gitattributes</a> file.
+And some times you may encounter during clone and pull:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Encountered &lt;n&gt; file(s) that should have been pointers
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>That simply means that someone pushed files to remote that should have been
 pointers (defined in the <em>.gitattributes</em> file).
 And to fix is simple:</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
@@ -734,8 +835,139 @@ And to fix is simple:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
-<div class="clear-left"></div></div></div><p>And advise the committer to ensure he has git lfs enabled with
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code>.</p>
+<div class="clear-left"></div></div></div><p>Then, advise the committer to ensure he has git LFS enabled with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code> and to read this page.</p>
+</section>
+<section id="checking-out-branches-and-commits">
+<h3>Checking out branches and commits<a class="headerlink" href="#checking-out-branches-and-commits" title="Link to this heading"></a></h3>
+<p>Git LFS simply follows the rules on the <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/.gitattributes">.gitattributes</a> file.
+And some times you may encounter during checkout:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>other_branch
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>error: Your local changes to the following files would be overwritten by checkout:
+        path/to/file/that_should_be_a_pointer.pptx
+Please commit your changes or stash them before you switch branches.
+Aborting
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>It is the same cause as <a class="reference internal" href="#files-pointers"><span class="std std-ref">previously</span></a>.
+If you don’t care about this file at the moment, just <code class="docutils literal notranslate"><span class="pre">--force</span></code> your way out.</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>other_branch<span class="w"> </span>-f
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div></section>
+<section id="pull-request-permission">
+<h3>Pull request permission<a class="headerlink" href="#pull-request-permission" title="Link to this heading"></a></h3>
+<p>When a user creates a pull request, they temporarily grant write permission
+for the removal of branches containing commits.
+However, this does not extend to LFS.
+As such, pushing LFS artifacts to their remote will result in:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>contributor
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>error: Authentication error: Authentication required: You must have push access to verify locks
+error: failed to push some refs to &#39;https://github.com/&lt;contributor&gt;/documentation.git&#39;
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>contributor<span class="w"> </span>--no-verify
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Writing objects: 100% (8/8), 1.08 KiB | 1.08 MiB/s, done.
+Total 8 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
+remote: error: GH008: Your push referenced at least 1 unknown Git LFS object:
+remote:     9b439f0ad3b1e8e965955487b72e84045e85fb844392890c7d34ba45b3430c1e
+remote: Try to push them with &#39;git lfs push --all&#39;.
+To https://github.com/&lt;contributor&gt;/documentation.git
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>As a reviewer, this gets on the way and there is no straightforward
+solution beyond not pushing commits with new LFS artifacts, or awkwardly requesting
+contributor permissions to their repository.</p>
+<p>If you wish to add new LFS artifacts, as a reviewer, simply merge the PR and commit to main.
+If the pull request is complex, you can push to a new branch, work on it, and
+once both parties are satisfied, close the original PR without merging, merging
+the branch onto the main remote instead.</p>
+<p>But if you <strong>don’t</strong> want to touch any LFS file and are only rebasing, you can temporarily
+disable lfs, work, push, and enable again, for example:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>uninstall
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Hooks for this repository have been removed.
+Global Git LFS configuration has been removed.
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restore any smudged file to its pointer state, to make sure no miss touches</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>restore<span class="w"> </span>.
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Work, work, work...</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>@~20
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Push even to a contributor&#39;s fork with an open PR</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>contributor<span class="w"> </span>branch-name:branch-name
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Enumerating objects: 6, done.
+Writing objects: 100% (4/4), 768 bytes | 768.00 KiB/s, done.
+To https://github.com/contributor/documentation.git
+   21s72b2..1b31311  branch-name -&gt; branch-name
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Re-install lfs</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>install<span class="w"> </span>--skip-smudge
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div></section>
 </section>
 </section>
 
@@ -750,8 +982,6 @@ And to fix is simple:</p>
         </div>
       </div>
   </div>
-
-  <div id="vertical-border"></div>
 
   <label id="cancel-area-show-toc" for="input-show-toc"></label>
   <label id="cancel-area-show-localtoc" for="input-show-localtoc"></label>
