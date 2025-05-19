@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extending Device Interfaces &#8212; System Level Documentation  documentation</title>
+    <title>Intro to Devicetree &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8e8a900e" />
     <link rel="stylesheet" type="text/css" href="../../_static/app.min.css?v=c218d0f6" />
     <script defer="" src="../../_static/app.umd.js?v=8984ea49"></script>
     <link rel="icon" href="../../_static/icon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="PyADI-IIO" href="../pyadi-iio/index.html" />
-    <link rel="prev" title="Transceiver Toolbox" href="transceiver-toolbox/index.html" />
+    <link rel="next" title="Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem" href="using-zephyr-codefusion-fs/zephyr_codefusion_fs.html" />
+    <link rel="prev" title="Zephyr RTOS" href="index.html" />
    
   
   <meta name="repository" content="documentation">
@@ -84,9 +84,26 @@
         </div>
         <nav>
           <ul>
-<li><a class="reference internal" href="#">Extending Device Interfaces</a><ul>
-<li><a class="reference internal" href="#directly-addressing-attributes">Directly Addressing Attributes</a></li>
-<li><a class="reference internal" href="#adding-matlab-properties-for-attributes">Adding MATLAB Properties For Attributes</a></li>
+<li><a class="reference internal" href="#">Intro to Devicetree</a><ul>
+<li><a class="reference internal" href="#devicetree-what-is-it-why-use-it">Devicetree: What is it &amp; Why use it?</a></li>
+<li><a class="reference internal" href="#how-do-i-read-it">How do I read it?</a><ul>
+<li><a class="reference internal" href="#the-root-node">The Root Node</a></li>
+<li><a class="reference internal" href="#nodes-subnodes">Nodes &amp; Subnodes</a></li>
+<li><a class="reference internal" href="#aliases">Aliases</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#devicetree-bindings">Devicetree Bindings</a><ul>
+<li><a class="reference internal" href="#compatible">“compatible”</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-does-the-devicetree-get-used">How does the Devicetree get used?</a><ul>
+<li><a class="reference internal" href="#zephyr-devicetree-bindings-index">Zephyr Devicetree Bindings Index</a></li>
+<li><a class="reference internal" href="#dts-vs-dtsi-vs-dtoverlay">.dts vs .dtsi vs .dtoverlay</a></li>
+<li><a class="reference internal" href="#how-can-i-look-at-the-compiled-devicetree">How can I look at the compiled Devicetree?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#blinky-in-zephyr-using-the-devicetree">Blinky in Zephyr (Using the Devicetree)</a></li>
+<li><a class="reference internal" href="#further-references">Further References</a></li>
 </ul>
 </li>
 </ul>
@@ -179,16 +196,16 @@ Content on this topic
 <li class="toctree-l2"><a class="reference internal" href="../libm2k/m2kcli.html">Command line utility</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-7" id="toctree-collapse-7" checked=""/><div class="collapse"><a class="reference internal" href="index.html">MATLAB &amp; Simulink Toolboxes</a><label for="toctree-collapse-7"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="hsx-toolbox/index.html">High Speed Converter Toolbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transceiver-toolbox/index.html">Transceiver Toolbox</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Extending Device Interfaces</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-7" id="toctree-collapse-7"/><div class="collapse"><a class="reference internal" href="../matlab/index.html">MATLAB &amp; Simulink Toolboxes</a><label for="toctree-collapse-7"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/hsx-toolbox/index.html">High Speed Converter Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/transceiver-toolbox/index.html">Transceiver Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matlab/bsp-extend.html">Extending Device Interfaces</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../pyadi-iio/index.html">PyADI-IIO</a></li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8" id="toctree-collapse-8"/><div class="collapse"><a class="reference internal" href="../zephyr/index.html">Zephyr RTOS</a><label for="toctree-collapse-8"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../zephyr/zephyr-devicetree.html">Intro to Devicetree</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../zephyr/using-zephyr-codefusion-fs/zephyr_codefusion_fs.html">Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem</a></li>
+<li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8" id="toctree-collapse-8" checked=""/><div class="collapse"><a class="reference internal" href="index.html">Zephyr RTOS</a><label for="toctree-collapse-8"><div class="icon"></div></label></div><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Intro to Devicetree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-zephyr-codefusion-fs/zephyr_codefusion_fs.html">Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem</a></li>
 </ul>
 </li>
 </ul>
@@ -371,102 +388,360 @@ Content on this topic
           <div class="body-header">
     <nav class="breadcrumb">
         <ol>
-          <li><a href="index.html">MATLAB &amp; Simulink Toolboxes</a></li>
+          <li><a href="index.html">Zephyr RTOS</a></li>
           </ol>
     </nav>
   </div>
 
           <div class="body" role="main">
             
-  <section id="extending-device-interfaces">
-<span id="matlab-bsp-extend"></span><h1>Extending Device Interfaces<a class="headerlink" href="#extending-device-interfaces" title="Link to this heading"></a></h1>
-<p>By default, only a small number of settings are available as direct attributes
-for many of the devices like the transceiver. This is primarily done to not
-burden the user with too many knobs which they do not care about since a device
-the transceiver can have over 100 addressable attributes. However, sometimes you
-want to get access to more IIO attributes available in the driver.</p>
-<p>The MATLAB and Simulink interfaces can be extended in two ways.</p>
-<section id="directly-addressing-attributes">
-<h2>Directly Addressing Attributes<a class="headerlink" href="#directly-addressing-attributes" title="Link to this heading"></a></h2>
-<p>Directly address properties through the underlying libIIO API calls. By
-default the AD9361 receiver interfaces only provide or control the following
-properties:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span> <span class="o">=</span>
-
-  <span class="n">adi</span><span class="o">.</span><span class="n">AD9361</span><span class="o">.</span><span class="n">Rx</span> <span class="k">with</span> <span class="n">properties</span><span class="p">:</span>
-
-             <span class="n">CenterFrequency</span><span class="p">:</span> <span class="mf">2.4000e+09</span>
-                <span class="n">SamplingRate</span><span class="p">:</span> <span class="mi">3000000</span>
-                 <span class="n">RFBandwidth</span><span class="p">:</span> <span class="mi">3000000</span>
-     <span class="n">GainControlModeChannel0</span><span class="p">:</span> <span class="s1">&#39;slow_attack&#39;</span>
-    <span class="n">EnableQuadratureTracking</span><span class="p">:</span> <span class="n">true</span>
-          <span class="n">EnableRFDCTracking</span><span class="p">:</span> <span class="n">true</span>
-    <span class="n">EnableBasebandDCTracking</span><span class="p">:</span> <span class="n">true</span>
-             <span class="n">SamplesPerFrame</span><span class="p">:</span> <span class="mi">32768</span>
-                <span class="n">channelCount</span><span class="p">:</span> <span class="mi">2</span>
-          <span class="n">EnableCustomFilter</span><span class="p">:</span> <span class="n">false</span>
-                         <span class="n">uri</span><span class="p">:</span> <span class="s1">&#39;ip:192.168.2.1&#39;</span>
+  <section id="intro-to-devicetree">
+<h1>Intro to Devicetree<a class="headerlink" href="#intro-to-devicetree" title="Link to this heading"></a></h1>
+<p>Zephyr contains a concept borrowed from Linux called the “Devicetree”,
+which is a key differentiator between Zephyr and other Real-Time
+Operating Systems (RTOSes). This page will educate a reader on essential
+Devicetree concepts as they relate to Zephyr and writing Zephyr
+drivers.  The device tree basics and format described here is applicable
+to Linux too!</p>
+<section id="devicetree-what-is-it-why-use-it">
+<h2>Devicetree: What is it &amp; Why use it?<a class="headerlink" href="#devicetree-what-is-it-why-use-it" title="Link to this heading"></a></h2>
+<p>The Devicetree is an abstract data structure. Its purpose is to
+describe and configure the hardware connected to a system. The reason
+this is useful is that embedded developers usually spend a lot (too
+much) of their time wrestling with the configuration of hardware
+features, pin maps, and peripheral settings instead of approaching the
+actual processing of the target signals and data within an application.
+The devicetree creates a structure that can be pulled into application
+code to determine the connected hardware at runtime (so long as the
+device tree has the correct configuration). This means a couple of things:</p>
+<ul class="simple">
+<li><p>Application code can be much more portable between multiple hardware
+boards, and multiple separate revisions. This is because the driver C
+code is abstracted a layer above the hardware by the device tree.</p></li>
+<li><p>Hardware configuration no longer needs to happen in C code. It
+instead happens in the Devicetree.</p></li>
+<li><p>Peripheral boards can be slotted in via overlay files which attach to
+an existing Devicetree, so they too can be slotted in without much
+additional driver code configuration.</p></li>
+</ul>
+</section>
+<section id="how-do-i-read-it">
+<h2>How do I read it?<a class="headerlink" href="#how-do-i-read-it" title="Link to this heading"></a></h2>
+<p>Devicetree has its own syntax…this can be a little tough to read at
+first, but the main thing to remember is <em>it’s just a hierarchical
+description of hardware</em>. Device tree files are written in a syntax
+called <em>dts</em> or “<strong>d</strong>evice <strong>t</strong>ree <strong>s</strong>ource”. Thus, one
+configures the devicetree in “.dts” or “dtsi” (<strong>d</strong>evice <strong>t</strong>ree
+<strong>s</strong>ource <strong>i</strong>nclude) files. A .dts file consists of a few things:</p>
+<section id="the-root-node">
+<h3>The Root Node<a class="headerlink" href="#the-root-node" title="Link to this heading"></a></h3>
+<p>The Devicetree is comprised of one or more nodes, delimited by brackets
+{}. Every Devicetree file must at the very least have a root node, named
+with a forward slash (“/”).</p>
+<div class="highlight-dts notranslate"><div class="highlight"><pre><span></span><span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="p">};</span>
 </pre></div>
 </div>
-<p>This does not provide status attributes or other more obscure control
-attributes. For example, the RSSI measurement is not provided as part of the
-AD9361 transceiver interfaces. To read this attribute directly we could do the
-following with the
-<a class="reference external" href="https://github.com/analogdevicesinc/MathWorks_tools/blob/master/%2Badi/%2Bcommon/Attribute.m#L25">common abstractions from here</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span> <span class="o">=</span> <span class="n">adi</span><span class="o">.</span><span class="n">AD9361</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span><span class="p">,</span><span class="s1">&#39;ip:192.168.2.1&#39;</span><span class="p">);</span>
-<span class="n">rssiValue</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">getAttributeLongLong</span><span class="p">(</span><span class="s1">&#39;voltage0&#39;</span><span class="p">,</span><span class="s1">&#39;rssi&#39;</span><span class="p">,</span><span class="n">false</span><span class="p">);</span>
+<p>The root node mostly serves the purpose of containing individual
+subnodes.</p>
+</section>
+<section id="nodes-subnodes">
+<h3>Nodes &amp; Subnodes<a class="headerlink" href="#nodes-subnodes" title="Link to this heading"></a></h3>
+<p>Subnodes are similarly delimited in a hierarchy starting from the root.
+Here’s an example .dts file:</p>
+<div class="highlight-dts notranslate"><div class="highlight"><pre><span></span><span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">example_node</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nl">subnode_label</span><span class="p">:</span><span class="w"> </span><span class="nf">example_subnode</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">subnode_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The above devicetree source contains 3 nodes:</p>
+<ul class="simple">
+<li><p>The root “/” node</p>
+<ul>
+<li><p>example_node</p>
+<ul>
+<li><p>example_subnode</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>If we look closer at the example subnode, we’ll notice it has
+a <strong>label</strong> and a <strong>property</strong>.</p>
+<ul class="simple">
+<li><p>A label is a simple shorthand name that can be used to refer to a
+node elsewhere in the device tree, Any node may have 0, 1, or more
+labels.</p></li>
+<li><p>A property is a name/value pair that is associated with a given node.
+A property can be an array of strings, numbers, bytes, or even a
+mixture of types.</p>
+<ul>
+<li><p>A boolean property may have an empty value. For these, the simple
+presence or absence of the property conveys sufficient
+information.</p></li>
+<li><p>The size and type of property is implied by the enclosing
+brackets (“&lt;&gt;” in the case of the integer subnode_property above)</p></li>
+</ul>
+</li>
+</ul>
+<p>Each node has a <strong>path</strong> and can be indexed by appending its parent
+nodes with forward slashes, such as on Linux. For example, the path to
+the example_subnode is “/example_node/example_subnode”.</p>
+</section>
+<section id="aliases">
+<h3>Aliases<a class="headerlink" href="#aliases" title="Link to this heading"></a></h3>
+<p>One may see an “aliases” node contained within a device tree source
+file. The aliases’ node has properties whose names are aliases and values
+are references to a node in the device tree. A reference to a node can
+be given using the reference symbol “&amp;”. Here’s an example using the
+subnode label from earlier:</p>
+<div class="highlight-dts notranslate"><div class="highlight"><pre><span></span><span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">aliases</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">subnode_alias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">subnode_label</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>These aliases which can be referenced by C/C++ application code to make
+it more portable. For example, a “led0” alias may be used to identify a
+connected LED without having to directly reference it’s GPIO pin or
+otherwise tether the application code to a particular board.</p>
+<div class="highlight-dts notranslate"><div class="highlight"><pre><span></span><span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">aliases</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">led0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">led0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">led1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">led1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">btn0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">button0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">btn1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">button1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 </section>
-<section id="adding-matlab-properties-for-attributes">
-<h2>Adding MATLAB Properties For Attributes<a class="headerlink" href="#adding-matlab-properties-for-attributes" title="Link to this heading"></a></h2>
-<p>If additional APIs are needed for a device, and that code will be used by
-others, then it is recommended to add an actual property to the class. This can
-provide additional documentation as well as range checking. Below the
-<a class="reference external" href="https://github.com/analogdevicesinc/MathWorks_tools/blob/master/%2Badi/%2BAD9361/Rx.m">Rx</a>
-class is modified to allow to selection of the RF port attribute of the
-transceiver. This is done by inserting the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">properties</span>
-    <span class="o">%</span><span class="n">RFPort</span> <span class="n">RF</span> <span class="n">Port</span>
-    <span class="o">%</span>   <span class="n">specified</span> <span class="k">as</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span><span class="p">:</span>
-    <span class="o">%</span>   <span class="s1">&#39;A_BALANCED&#39;</span> <span class="o">-</span> <span class="n">Select</span> <span class="n">A</span> <span class="n">Balanced</span> <span class="n">RF</span> <span class="nb">input</span>
-    <span class="o">%</span>   <span class="s1">&#39;B_BALANCED&#39;</span> <span class="o">-</span> <span class="n">Select</span> <span class="n">B</span> <span class="n">Balanced</span> <span class="n">RF</span> <span class="nb">input</span>
-    <span class="o">%</span>   <span class="s1">&#39;TX_MONITOR1&#39;</span> <span class="o">-</span> <span class="n">Select</span> <span class="n">TX</span> <span class="n">Monitor</span> <span class="mi">1</span> <span class="n">RF</span> <span class="nb">input</span>
-    <span class="o">%</span>   <span class="s1">&#39;TX_MONITOR2&#39;</span> <span class="o">-</span> <span class="n">Select</span> <span class="n">TX</span> <span class="n">Monitor</span> <span class="mi">2</span> <span class="n">RF</span> <span class="nb">input</span>
-    <span class="n">RFPort</span> <span class="o">=</span> <span class="s1">&#39;A_BALANCED&#39;</span><span class="p">;</span>
-<span class="n">end</span>
+</section>
+<section id="devicetree-bindings">
+<h2>Devicetree Bindings<a class="headerlink" href="#devicetree-bindings" title="Link to this heading"></a></h2>
+<p>Devicetree bindings declare both the required and optional properties of
+a device. Devicetree bindings are required by Zephyr in order to compile
+the device tree, and are in the YAML file format. Linux also has a
+concept of devicetree bindings, which may be either YAML or free-text
+format.  However, unlike Zephyr, Linux device tree bindings are not
+required, and are simply used as developer documentation.  It is not
+uncommon to find a device tree binding file missing for a driver on
+Linux.</p>
+<section id="compatible">
+<h3>“compatible”<a class="headerlink" href="#compatible" title="Link to this heading"></a></h3>
+<p>The “compatible” property binds a devicetree node to a group of
+requirements. If a node is contained in the devicetree containing a
+“compatible” property that matches one given in the devicetree bindings
+YAML files, it must have the required properties given in the YAML file
+or the devicetree will fail to compile.</p>
+<p>Here’s an example .yaml file that specifies a hypothetical “adi,max32xxx” node:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">compatible</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adi,max32xxx&quot;</span>
+<span class="nt">properties</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">num-leds</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">int</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
-<p>Now under the standard methods scope the following set method is added</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Check</span> <span class="n">RFPort</span>
-<span class="n">function</span> <span class="nb">set</span><span class="o">.</span><span class="n">RFPort</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-    <span class="n">obj</span><span class="o">.</span><span class="n">RFPort</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
-    <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">ConnectedToDevice</span>
-        <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;voltage1&#39;</span><span class="p">;</span>
-        <span class="n">obj</span><span class="o">.</span><span class="n">setAttributeRAW</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="s1">&#39;rf_port_select&#39;</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">false</span><span class="p">);</span>
-    <span class="n">end</span>
-<span class="n">end</span>
+<p>Now here’s a corresponding devicetree node:</p>
+<div class="highlight-dts notranslate"><div class="highlight"><pre><span></span><span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nf">node0</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nl">compatible</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adi,max32xxx&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="n">num-leds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">};</span>
+<span class="p">};</span>
 </pre></div>
 </div>
-<p>Now when the class is expanded the new property is populated:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span> <span class="o">=</span>
+<p>In the above file, “node0” gets mapped to the devicetree bindings via
+the “compatible” property. Therefore, it must contain the property
+“num-leds” or else the devicetree will fail to compile.</p>
+</section>
+</section>
+<section id="how-does-the-devicetree-get-used">
+<h2>How does the Devicetree get used?<a class="headerlink" href="#how-does-the-devicetree-get-used" title="Link to this heading"></a></h2>
+<p>Information can be extracted from the Devicetree to use in application
+code – that means device drivers now will have a component located in
+the Devicetree as well, and application C/C++ code will frequently
+reference the Devicetree to extract information about connected
+hardware. This adds a layer of complexity with the benefit
+of allowing hardware to be described at runtime rather than directly
+within the application firmware. This ultimately should mean that more
+application code is portable to more hardware variants given that the
+application code can afford to be more hardware-agnostic, provided the
+target hardware meets the minimum requirements of the application.
+Zephyr’s build system aggregates all the relevant .dts, .dtsi, and
+.dtoverlay files at compile time into a single C header file called
+“devicetree.h”.</p>
+<section id="zephyr-devicetree-bindings-index">
+<h3>Zephyr Devicetree Bindings Index<a class="headerlink" href="#zephyr-devicetree-bindings-index" title="Link to this heading"></a></h3>
+<p>In Zephyr, some node definitions and properties are vendor specific.
+This is useful for implementations of vendor-specific hardware, such as
+I2C controller drivers across different microcontroller SDKs. As such,
+questions such as “How do I enable internal pullups for a GPIO?” are
+answered differently for different vendors. The place to look for where
+these properties are defined is the <a class="reference external" href="https://docs.zephyrproject.org/latest/build/dts/api/bindings.html">Zephyr Devicetree Bindings
+Index</a>.
+Here you can find different vendor-specific properties by looking at the
+vendor’s implementation of particular drivers. For example, the ADI
+Zephyr driver for MAX32xxx GPIO controllers is under “<a class="reference external" href="https://docs.zephyrproject.org/latest/build/dts/api/bindings/gpio/adi%2Cmax32-gpio.html#dtbinding-adi-max32-gpio">adi,
+max32-gpio</a>”.</p>
+</section>
+<section id="dts-vs-dtsi-vs-dtoverlay">
+<h3>.dts vs .dtsi vs .dtoverlay<a class="headerlink" href="#dts-vs-dtsi-vs-dtoverlay" title="Link to this heading"></a></h3>
+<p>A typical Devicetree file that will go into the compiler is called a
+device tree source or .dts file. Some file are meant to be included in
+other .dts files, and as such as called device tree source include, or
+.dtsi files. Finally, a given custom board that integrates pre-existing
+hardware (such as sensors, processors, etc) can be described in terms of
+a device tree overlay, or .dtoverlay file.</p>
+<div class="highlight-dts notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (c) 2025 Analog Devices, Inc</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> */</span>
 
-  <span class="n">adi</span><span class="o">.</span><span class="n">AD9361</span><span class="o">.</span><span class="n">Rx</span> <span class="k">with</span> <span class="n">properties</span><span class="p">:</span>
+<span class="cm">/*</span>
+<span class="cm"> * This Devicetree overlay will connect an ADT7420 Pmod</span>
+<span class="cm"> * to an AD-APARD32690-SL board.</span>
+<span class="cm"> */</span>
 
-             <span class="n">CenterFrequency</span><span class="p">:</span> <span class="mf">2.4000e+09</span>
-                <span class="n">SamplingRate</span><span class="p">:</span> <span class="mi">3000000</span>
-                 <span class="n">RFBandwidth</span><span class="p">:</span> <span class="mi">3000000</span>
-                      <span class="n">RFPort</span><span class="p">:</span> <span class="s1">&#39;A_BALANCED&#39;</span>
-     <span class="n">GainControlModeChannel0</span><span class="p">:</span> <span class="s1">&#39;slow_attack&#39;</span>
-    <span class="n">EnableQuadratureTracking</span><span class="p">:</span> <span class="n">true</span>
-          <span class="n">EnableRFDCTracking</span><span class="p">:</span> <span class="n">true</span>
-    <span class="n">EnableBasebandDCTracking</span><span class="p">:</span> <span class="n">true</span>
-             <span class="n">SamplesPerFrame</span><span class="p">:</span> <span class="mi">32768</span>
-                <span class="n">channelCount</span><span class="p">:</span> <span class="mi">2</span>
-          <span class="n">EnableCustomFilter</span><span class="p">:</span> <span class="n">false</span>
-                         <span class="n">uri</span><span class="p">:</span> <span class="s1">&#39;ip:192.168.2.1&#39;</span>
+<span class="cm">/* ADT7420 I2C Configuration */</span>
+<span class="nl">pmod_i2c</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="na">i2c0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;okay&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">pinctrl-0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&amp;</span><span class="na">i2c0a_scl_p0_31</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;&amp;</span><span class="na">i2c0a_sda_p0_30</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pinctrl-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;default&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nl">temp1</span><span class="p">:</span><span class="w"> </span><span class="nf">adt7420</span><span class="o">@</span><span class="mi">48</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;adi,adt7420&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kr">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;okay&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">friendly-name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ADT7420 Temperature Sensor&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// i2c address</span>
+<span class="w">        </span><span class="kr">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mh">0x48</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="cm">/* Set logic to 3.3V &amp; optionally enable internal pullups */</span>
+<span class="o">&amp;</span><span class="nf">i2c0a_scl_p0_31</span><span class="p">{</span>
+<span class="w">    </span><span class="n">power-source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="na">MAX32_VSEL_VDDIOH</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// bias-pull-up;</span>
+<span class="p">};</span>
+<span class="o">&amp;</span><span class="nf">i2c0a_sda_p0_30</span><span class="p">{</span>
+<span class="w">    </span><span class="n">power-source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="na">MAX32_VSEL_VDDIOH</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// bias-pull-up;</span>
+<span class="p">};</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Aliases node gives a convenient alias to a node, which</span>
+<span class="cm"> * can be used in C code using Zephyr Devicetree macros</span>
+<span class="cm"> */</span>
+<span class="nf">/</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">aliases</span><span class="cm"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">i2c-temp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">temp1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
 </pre></div>
 </div>
+</section>
+<section id="how-can-i-look-at-the-compiled-devicetree">
+<h3>How can I look at the compiled Devicetree?<a class="headerlink" href="#how-can-i-look-at-the-compiled-devicetree" title="Link to this heading"></a></h3>
+<p>A helpful way to view compiled devicetree within a Zephyr project is
+the <a class="reference external" href="https://pypi.org/project/dtsh/">dtsh Python module</a>. This module
+has some small bugs on Windows at the time of writing, but is mostly
+cross-platform, and can be used to analyze the compiled Devicetree in a
+neat, readable format.</p>
+</section>
+</section>
+<section id="blinky-in-zephyr-using-the-devicetree">
+<h2>Blinky in Zephyr (Using the Devicetree)<a class="headerlink" href="#blinky-in-zephyr-using-the-devicetree" title="Link to this heading"></a></h2>
+<p>Below is the classic “Blinky” sample code given in Zephyr. It uses the
+Devicetree by grabbing “led0” from a Devicetree alias. The flow of the
+example is as follows:</p>
+<ul class="simple">
+<li><p>Include Zephyr kernel and GPIO driver API</p></li>
+<li><p>Extract the first connected LED from a devicetree alias. This could
+also be done using a Devicetree node label.</p>
+<ul>
+<li><p>The LED is given the type “const struct <strong>gpio_dt_spec</strong>”, which
+is defined by the Zephyr GPIO API.</p></li>
+<li><p>Most objects extracted from the devicetree will be a type defined
+by an API or type “const struct device” (e.g. “const struct device
+*uart”)</p></li>
+</ul>
+</li>
+<li><p>Utilize the Zephyr GPIO API to…</p>
+<ul>
+<li><p>Check if the GPIO port is ready</p></li>
+<li><p>Configure &amp; enable the pin as a GPIO output</p></li>
+<li><p>Toggle the LED within a while loop.</p></li>
+</ul>
+</li>
+</ul>
+<p>The code is located here:
+<a class="reference external" href="https://github.com/zephyrproject-rtos/zephyr/blob/main/samples/basic/blinky/src/main.c">https://github.com/zephyrproject-rtos/zephyr/blob/main/samples/basic/blinky/src/main.c</a>
+and documented here:
+<a class="reference external" href="https://github.com/zephyrproject-rtos/zephyr/blob/main/samples/basic/blinky/README.rst">README.rst</a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (c) 2016 Intel Corporation</span>
+<span class="cm"> *</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;zephyr/kernel.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;zephyr/drivers/gpio.h&gt;</span>
+
+<span class="cm">/* 1000 msec = 1 sec */</span>
+<span class="cp">#define SLEEP_TIME_MS   1000</span>
+
+<span class="cm">/* The devicetree node identifier for the &quot;led0&quot; alias. */</span>
+<span class="cp">#define LED0_NODE DT_ALIAS(led0)</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * A build error on this line means your board is unsupported.</span>
+<span class="cm"> * See the sample documentation for information on how to fix this.</span>
+<span class="cm"> */</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">gpio_dt_spec</span><span class="w"> </span><span class="n">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GPIO_DT_SPEC_GET</span><span class="p">(</span><span class="n">LED0_NODE</span><span class="p">,</span><span class="w"> </span><span class="n">gpios</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">gpio_is_ready_dt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">led</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gpio_pin_configure_dt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">led</span><span class="p">,</span><span class="w"> </span><span class="n">GPIO_OUTPUT_ACTIVE</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gpio_pin_toggle_dt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">led</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">k_msleep</span><span class="p">(</span><span class="n">SLEEP_TIME_MS</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="further-references">
+<h2>Further References<a class="headerlink" href="#further-references" title="Link to this heading"></a></h2>
+<p>Next step – go read the specs!</p>
+<ul class="simple">
+<li><p>If you have to develop or modify Devicetree beyond this level, it’s
+likely you need to read the Devicetree specification:
+<a class="reference external" href="https://www.devicetree.org/">The Devicetree Project</a></p></li>
+<li><p>For Zephyr-specific devicetree APIs, pair the Devicetree spec
+(platform-independent) with the Zephyr Devicetree API Reference:
+<a class="reference external" href="https://docs.zephyrproject.org/latest/build/dts/index.html">Devicetree — Zephyr Project Documentation</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -474,8 +749,8 @@ transceiver. This is done by inserting the following:</p>
           </div>
               <div class="related">
                 &nbsp;
-    <a href="transceiver-toolbox/index.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">Transceiver Toolbox</a>
-    <a href="../pyadi-iio/index.html" title="Next document (Alt+Shift+RightArrow)" class="next">PyADI-IIO</a>
+    <a href="index.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">Zephyr RTOS</a>
+    <a href="using-zephyr-codefusion-fs/zephyr_codefusion_fs.html" title="Next document (Alt+Shift+RightArrow)" class="next">Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem</a>
               </div>
           
         </div>
