@@ -1,5 +1,0 @@
-extends: existence
-message: "Use 'Kuiper' instead of 'kuiper'."
-level: error
-tokens:
-  - '\skuiper\b'
